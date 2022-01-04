@@ -18,7 +18,7 @@
   /* ================ Colors ================ */
 
   --marketplaceColor: #0e75ee;
-  --marketplaceColorLight: #2c90f0;
+  --marketplaceColorLight: #4494d6;
   --marketplaceColorDark: #223e54;
 
   /* Used with inline CSS SVGs */
@@ -44,7 +44,7 @@
   --matterColorLightTransparent: rgba(255, 255, 255, 0.65);
 
   /* ================ Font ================ */
-  --fontFamily: 'poppins', Helvetica, Arial, sans-serif;
+  --fontFamily: 'futura', 'poppins', Helvetica, Arial, sans-serif;
 
   --fontWeightRegular: 400;
   --fontWeightMedium: 500;
@@ -137,7 +137,7 @@
 
   /* ================ SectionHero ================ */
 
-  --SectionHero_desktopTitleMaxWidth: 625px;
+  --SectionHero_desktopTitleMaxWidth: 600px;
 
   /* ================ TabNav ================ */
   --TabNav_linkWidth: 240px;
@@ -279,9 +279,9 @@ textarea {
 
 .fontsLoaded {
   & body {
-    font-family: 'poppins', Helvetica, Arial, sans-serif;
+    font-family: 'futura', 'poppins', Helvetica, Arial, sans-serif;
   }
   & button {
-    font-family: 'poppins', Helvetica, Arial, sans-serif;
+    font-family: 'futura', 'poppins', Helvetica, Arial, sans-serif;
   }
 }

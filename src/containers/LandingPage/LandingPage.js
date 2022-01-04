@@ -22,6 +22,7 @@ import { TopbarContainer } from '../../containers';
 import facebookImage from '../../assets/saunatimeFacebook-1200x630.jpg';
 import twitterImage from '../../assets/saunatimeTwitter-600x314.jpg';
 import css from './LandingPage.module.css';
+import SectionLookingFor from '../../components/SectionLookingFor/SectionLookingFor';
 
 export const LandingPageComponent = props => {
   const { history, intl, location, scrollingDisabled } = props;
@@ -64,6 +65,11 @@ export const LandingPageComponent = props => {
           <ul className={css.sections}>
             <li className={css.section}>
               <div className={css.sectionContentFirstChild}>
+                <SectionLookingFor />
+              </div>
+            </li>
+            <li className={css.section}>
+              <div className={css.sectionContentSecondChild}>
                 <SectionLocations />
               </div>
             </li>

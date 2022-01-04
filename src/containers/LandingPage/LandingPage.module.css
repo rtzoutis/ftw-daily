@@ -52,14 +52,14 @@
 }
 
 /* Square corners for the last section if it's even */
-.section:nth-of-type(2n):last-of-type {
+.section:nth-of-type(3n):last-of-type {
   @media (--viewportMedium) {
     border-radius: 4px 4px 0 0;
   }
 }
 
 /* Every other section has a light background */
-.section:nth-of-type(2n) {
+.section:nth-of-type(3n) {
   background-color: var(--matterColorLight);
   @media (--viewportMedium) {
     border-radius: 4px;
@@ -91,8 +91,13 @@
   margin-top: 3vh;
 }
 
+.sectionContentSecondChild {
+  composes: sectionContent;
+  margin-top: 1vh;
+}
+
 /* A bar on top of light sections */
-.section:nth-of-type(2n) .sectionContent::before {
+.section:nth-of-type(3n) .sectionContent::before {
   background: var(--marketplaceColor);
   content: '';
   display: block;

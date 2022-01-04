@@ -22,8 +22,9 @@
   /* Full screen Background image located in root-folder/src/assets */
   --backgroundImage: {
     /* Gradient direction and overlaying the black color on top of the image for better readability */
-    background: linear-gradient(-45deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)),
-      url('../../assets/bg.jpg');
+    /*background: linear-gradient(-45deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)),
+      url('../../assets/bg.jpg');*/
+    background: url('../../assets/bg.jpg');
 
     /* Add loading color for the div */
     background-color: var(--matterColor);
@@ -69,6 +70,7 @@
   --marketplaceBodyFontStyles: {
     font-family: var(--fontFamily);
     font-weight: var(--fontWeightMedium);
+    color: var(--marketplaceColorDark);
     font-size: 14px;
     line-height: 24px;
     letter-spacing: -0.1px;
@@ -88,7 +90,8 @@
   /* ================ Hero title ================ */
 
   --marketplaceHeroTitleFontStyles: {
-    font-weight: var(--fontWeightBold);
+    color: var(--marketplaceColorDark);
+    font-weight: var(--fontWeightMedium);
     font-size: 36px;
     line-height: 36px;
     letter-spacing: -0.7px;
@@ -152,6 +155,7 @@
   /* ================ H1, H2, H3, H4, H5 & H6 ================ */
 
   --marketplaceH1FontStyles: {
+    color: var(--marketplaceColorDark);
     font-weight: var(--fontWeightSemiBold);
     font-size: 24px;
     line-height: 30px;
@@ -172,6 +176,7 @@
   }
 
   --marketplaceH2FontStyles: {
+    color: var(--marketplaceColorDark);
     font-weight: var(--fontWeightSemiBold);
     font-size: 21px;
     line-height: 24px;
@@ -188,6 +193,7 @@
   }
 
   --marketplaceH3FontStyles: {
+    color: var(--marketplaceColorDark);
     font-weight: var(--fontWeightSemiBold);
     font-size: 18px;
     line-height: 24px;
@@ -203,8 +209,9 @@
   }
 
   --marketplaceH4FontStyles: {
+    color: var(--marketplaceColorDark);
     font-weight: var(--fontWeightMedium);
-    font-size: 15px;
+    font-size: 16px;
     line-height: 24px;
     letter-spacing: 0;
     /* margin-top + n * line-height + margin-bottom => x * 6px */
@@ -220,6 +227,7 @@
   }
 
   --marketplaceH5FontStyles: {
+    color: var(--marketplaceColorDark);
     font-weight: var(--fontWeightMedium);
     font-size: 14px;
     line-height: 18px;
@@ -237,6 +245,7 @@
   }
 
   --marketplaceH6FontStyles: {
+    color: var(--marketplaceColorDark);
     font-weight: var(--fontWeightBold);
     font-size: 12px;
     line-height: 18px;

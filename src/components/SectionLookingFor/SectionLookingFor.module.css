@@ -13,16 +13,29 @@
   display: flex;
   flex-direction: column;
   margin-top: 0px;
+  margin-bottom: 10px;
 
   @media (--viewportMedium) {
     flex-direction: row;
     margin-top: 33px;
+    flex-flow: wrap;
+    justify-content: space-between;
+  }
+  @media (--viewportMedium) {
+    justify-content: center;
+  }
+  @media (--viewportLarge) {
+    justify-content: center;
+  }
+  @media (--viewportLargeWithPaddings) {
+    justify-content: space-between;
   }
 }
 
 .location {
   width: 100%;
   margin-top: 25px;
+  position: relative;
 
   /* Remove link's hover effect */
   &:hover {
@@ -31,21 +44,30 @@
 
   @media (--viewportMedium) {
     margin-top: 0;
+    max-width: 350px;
+  }
+  @media (--viewportLarge) {
+    margin-top: 0;
+    max-width: 250px;
+  }
+  @media (--viewportLargeWithPaddings) {
+    margin-top: 0;
+    max-width: 250px;
   }
 }
 
 .location {
   @media (--viewportMedium) {
-    margin-right: 40px;
-    margin-bottom: 0;
+    margin-right: 10px;
+    margin-bottom: 10px;
   }
 }
 
-.location:last-of-type {
+/*.location:last-of-type {
   @media (--viewportMedium) {
     margin-right: 0;
   }
-}
+}*/
 
 /* A wrapper for a responsive image that holds it's aspect ratio */
 .imageWrapper {
@@ -84,15 +106,29 @@
 
 .linkText {
   @apply --marketplaceH2FontStyles;
-  color: var(--matterColor);
-  margin-top: 15px;
-  margin-bottom: 0;
-
-  @media (--viewportMedium) {
-    margin-top: 21px;
-  }
+  font-weight: var(--fontWeightRegular);
+  color: var(--matterColorLight);
+  position: absolute;
+  user-select: none;
+  pointer-events: none;
+  margin: 0;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  text-align: center;
 }
 
 .locationName {
-  color: var(--marketplaceColor);
+  /*color: var(--matterColor);*/
+}
+
+.seeAll{
+  text-decoration: none;
+  border-bottom: 1px solid var(--marketplaceColorLight);
+  padding: 7px 80px;
+
+  /* Remove link's hover effect */
+  &:hover {
+    text-decoration: none;
+  }
 }
