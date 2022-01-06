@@ -33,3 +33,13 @@
 .text p{
   color: #666666;
 }
+
+.question{
+  @apply --marketplaceH2FontStyles;
+  font-weight: var(--fontWeightMedium);
+  user-select: none;
+  cursor: pointer;
+  color: var(--marketplaceColorLight2);
+  position: relative;
+  margin: 0px;
+}

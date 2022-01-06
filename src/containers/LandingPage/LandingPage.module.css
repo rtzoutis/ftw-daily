@@ -113,11 +113,11 @@
 
 .sectionContentSixthChild {
   composes: sectionContent;
-  margin-top: 5vh;
+  margin-top: 0vh;
 }
 
 /* A bar on top of light sections */
-.section:nth-of-type(7n) .sectionContent::before {
+.section:nth-of-type(6n) .sectionContent::before {
   background: var(--marketplaceColor);
   content: '';
   display: block;
