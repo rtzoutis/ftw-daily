@@ -1,0 +1,35 @@
+@import '../../styles/propertySets.css';
+
+.title {
+  @apply --marketplaceH1FontStyles;
+  font-weight: var(--fontWeightRegular);
+  text-align: center;
+
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.whypartner {
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+  justify-content: space-between;
+  margin-top: 33px;
+  margin-bottom: 10px;
+}
+
+.img{
+  flex: 0 0 200px;
+  padding: 0px 50px 0px 0px;
+}
+.img img{
+  width: 100%;
+  height: auto;
+}
+
+.text{
+  flex: 1;
+}
+.text p{
+  color: #666666;
+}

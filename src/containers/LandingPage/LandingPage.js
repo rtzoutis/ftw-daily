@@ -23,6 +23,10 @@ import facebookImage from '../../assets/saunatimeFacebook-1200x630.jpg';
 import twitterImage from '../../assets/saunatimeTwitter-600x314.jpg';
 import css from './LandingPage.module.css';
 import SectionLookingFor from '../../components/SectionLookingFor/SectionLookingFor';
+import SectionEasyAs from '../../components/SectionEasyAs/SectionEasyAs';
+import SectionWhyChoose from '../../components/SectionWhyChoose/SectionWhyChoose';
+import SectionWhyPartner from '../../components/SectionWhyPartner/SectionWhyPartner';
+import FAQ from '../../components/FAQ/FAQ';
 
 export const LandingPageComponent = props => {
   const { history, intl, location, scrollingDisabled } = props;
@@ -68,9 +72,29 @@ export const LandingPageComponent = props => {
                 <SectionLookingFor />
               </div>
             </li>
-            <li className={css.section}>
+            <li className={css.section} style={{backgroundColor: "#eef4f8"}}>
               <div className={css.sectionContentSecondChild}>
                 <SectionLocations />
+              </div>
+            </li>
+            <li className={css.section}>
+              <div className={css.sectionContentThirdChild}>
+                <SectionEasyAs />
+              </div>
+            </li>
+            <li className={css.section} style={{backgroundColor: "#eef4f8"}}>
+              <div className={css.sectionContentForthChild}>
+                <SectionWhyChoose />
+              </div>
+            </li>
+            <li className={css.section}>
+              <div className={css.sectionContentFifthChild}>
+                <SectionWhyPartner />
+              </div>
+            </li>
+            <li className={css.section}>
+              <div className={css.sectionContentSixthChild}>
+                <FAQ />
               </div>
             </li>
             <li className={css.section}>

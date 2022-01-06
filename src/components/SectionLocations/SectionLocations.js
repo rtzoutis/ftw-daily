@@ -28,12 +28,9 @@ const locationLink = (name, image, searchQuery) => {
         <div className={css.aspectWrapper}>
           <LazyImage src={image} alt={name} className={css.locationImage} />
         </div>
-      </div>
-      <div className={css.linkText}>
-        <FormattedMessage
-          id="SectionLocations.listingsInLocation"
-          values={{ location: nameText }}
-        />
+        <div className={css.linkText}>
+          {nameText}
+        </div>
       </div>
     </NamedLink>
   );
@@ -51,19 +48,19 @@ const SectionLocations = props => {
       </div>
       <div className={css.locations}>
         {locationLink(
-          'Helsinki',
+          'Paros',
           helsinkiImage,
-          '?address=Helsinki%2C%20Finland&bounds=60.2978389%2C25.254484899999966%2C59.9224887%2C24.782875800000056&origin=60.16985569999999%2C24.93837910000002'
+          '?address=Paros%2C%20South%20Aegean%2C%20Greece&bounds=37.13512%2C25.198458%2C36.96768%2C25.097698'
         )}
         {locationLink(
-          'Rovaniemi',
+          'Santorini',
           rovaniemiImage,
-          '?address=Rovaniemi%2C%20Finland&bounds=67.18452510000002%2C27.32667850000007%2C66.1553745%2C24.736871199999996&origin=66.50394779999999%2C25.729390599999988'
+          '?address=Santorini%2C%20Νήσος%20Σαντορίνη%2C%20Thira%2C%20South%20Aegean%20847%2000%2C%20Greece&bounds=36.5120665%2C25.52204868%2C36.3225553%2C25.34343807'
         )}
         {locationLink(
-          'Ruka',
+          'Crete',
           rukaImage,
-          '?address=Ruka%2C%20Finland&bounds=66.1704578%2C29.14246849999995%2C66.1614402%2C29.110453699999994&origin=66.16594940000002%2C29.12646110000003'
+          '?address=Crete%2C%20Greece&bounds=35.7764068975512%2C26.4520820779446%2C34.7186774013626%2C23.3745288060402'
         )}
       </div>
     </div>
