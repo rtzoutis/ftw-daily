@@ -81,35 +81,61 @@ const Footer = props => {
             </div>
             <div className={css.infoLinks}>
               <ul className={css.list}>
+                <li className={css.listHeader} style={{textTransform: "uppercase"}}>
+                  <FormattedMessage id="Footer.weRent" />
+                </li>
                 <li className={css.listItem}>
                   <NamedLink name="NewListingPage" className={css.link}>
-                    <FormattedMessage id="Footer.toNewListingPage" />
+                    <FormattedMessage id="Footer.vehicles" />
                   </NamedLink>
                 </li>
                 <li className={css.listItem}>
                   <NamedLink name="AboutPage" className={css.link}>
-                    <FormattedMessage id="Footer.toAboutPage" />
+                    <FormattedMessage id="Footer.bicycles" />
                   </NamedLink>
                 </li>
                 <li className={css.listItem}>
                   <NamedLink name="LandingPage" className={css.link}>
-                    <FormattedMessage id="Footer.toFAQPage" />
+                    <FormattedMessage id="Footer.eBicycles" />
                   </NamedLink>
                 </li>
                 <li className={css.listItem}>
                   <NamedLink name="LandingPage" className={css.link}>
-                    <FormattedMessage id="Footer.toHelpPage" />
+                    <FormattedMessage id="Footer.eScooters" />
                   </NamedLink>
                 </li>
                 <li className={css.listItem}>
+                  <NamedLink name="LandingPage" className={css.link}>
+                    <FormattedMessage id="Footer.motorBikes" />
+                  </NamedLink>
+                </li>
+                <li className={css.listItem}>
+                  <NamedLink name="LandingPage" className={css.link}>
+                    <FormattedMessage id="Footer.quadBikes" />
+                  </NamedLink>
+                </li>
+                <li className={css.listItem}>
+                  <NamedLink name="LandingPage" className={css.link}>
+                    <FormattedMessage id="Footer.ribs" />
+                  </NamedLink>
+                </li>
+                <li className={css.listItem}>
+                  <NamedLink name="LandingPage" className={css.link}>
+                    <FormattedMessage id="Footer.surfboards" />
+                  </NamedLink>
+                </li>
+                {/*<li className={css.listItem}>
                   <NamedLink name="AboutPage" to={{ hash: '#contact' }} className={css.link}>
                     <FormattedMessage id="Footer.toContactPage" />
                   </NamedLink>
-                </li>
+                </li>*/}
               </ul>
             </div>
             <div className={css.searches}>
               <ul className={css.list}>
+                <li className={css.listHeader}>
+                  <FormattedMessage id="Footer.trendingLocations" />
+                </li>
                 <li className={css.listItem}>
                   <NamedLink
                     name="SearchPage"
@@ -119,7 +145,7 @@ const Footer = props => {
                     }}
                     className={css.link}
                   >
-                    <FormattedMessage id="Footer.searchHelsinki" />
+                    <FormattedMessage id="Footer.searchSantorini" />
                   </NamedLink>
                 </li>
                 <li className={css.listItem}>
@@ -131,7 +157,7 @@ const Footer = props => {
                     }}
                     className={css.link}
                   >
-                    <FormattedMessage id="Footer.searchTurku" />
+                    <FormattedMessage id="Footer.searchParos" />
                   </NamedLink>
                 </li>
                 <li className={css.listItem}>
@@ -143,7 +169,7 @@ const Footer = props => {
                     }}
                     className={css.link}
                   >
-                    <FormattedMessage id="Footer.searchTampere" />
+                    <FormattedMessage id="Footer.searchMykonos" />
                   </NamedLink>
                 </li>
                 <li className={css.listItem}>
@@ -155,83 +181,58 @@ const Footer = props => {
                     }}
                     className={css.link}
                   >
-                    <FormattedMessage id="Footer.searchOulu" />
-                  </NamedLink>
-                </li>
-                <li className={css.listItem}>
-                  <NamedLink
-                    name="SearchPage"
-                    to={{
-                      search:
-                        '?address=Rukatunturi%2C%20Kuusamo%2C%20Finland&bounds=66.1699707%2C29.167735499999935%2C66.1609529%2C29.13572069999998&origin=66.1654622%2C29.151728100000014',
-                    }}
-                    className={css.link}
-                  >
-                    <FormattedMessage id="Footer.searchRuka" />
+                    <FormattedMessage id="Footer.searchCrete" />
                   </NamedLink>
                 </li>
               </ul>
             </div>
             <div className={css.searchesExtra}>
               <ul className={css.list}>
+                <li className={css.listHeader}>
+                  <FormattedMessage id="Footer.partnerCenter" />
+                </li>
                 <li className={css.listItem}>
-                  <NamedLink
-                    name="SearchPage"
-                    to={{
-                      search:
-                        '?address=Kuopio%2C%20Finland&bounds=63.40340329999999%2C28.457629300000008%2C62.592254%2C26.890028099999995&origin=62.89796999999999%2C27.67817249999996',
-                    }}
-                    className={css.link}
-                  >
-                    <FormattedMessage id="Footer.searchKuopio" />
+                  <NamedLink name="LandingPage" className={css.link}>
+                    <FormattedMessage id="Footer.partnersFAQ" />
                   </NamedLink>
                 </li>
                 <li className={css.listItem}>
-                  <NamedLink
-                    name="SearchPage"
-                    to={{
-                      search:
-                        '?address=Mikkeli%2C%20Finland&bounds=62.1990357%2C27.900274999999965%2C61.20955799999999%2C26.82762809999997&origin=61.68872709999999%2C27.27214570000001',
-                    }}
-                    className={css.link}
-                  >
-                    <FormattedMessage id="Footer.searchMikkeli" />
+                  <NamedLink name="LandingPage" className={css.link}>
+                    <FormattedMessage id="Footer.howPartners" />
                   </NamedLink>
                 </li>
                 <li className={css.listItem}>
-                  <NamedLink
-                    name="SearchPage"
-                    to={{
-                      search:
-                        '?address=Espoo%2C%20Finland&bounds=60.3636105%2C24.8505715%2C60.0499087%2C24.499656500000015&origin=60.2054911%2C24.655899999999974',
-                    }}
-                    className={css.link}
-                  >
-                    <FormattedMessage id="Footer.searchEspoo" />
+                  <NamedLink name="LandingPage" className={css.link}>
+                    <FormattedMessage id="Footer.insurance" />
                   </NamedLink>
                 </li>
                 <li className={css.listItem}>
-                  <NamedLink
-                    name="SearchPage"
-                    to={{
-                      search:
-                        '?address=Vantaa%2C%20Finland&bounds=60.40113659999999%2C25.19306240000003%2C60.23714200000001%2C24.746512199999984&origin=60.29335239999999%2C25.037768599999936',
-                    }}
-                    className={css.link}
-                  >
-                    <FormattedMessage id="Footer.searchVantaa" />
+                  <NamedLink name="LandingPage" className={css.link}>
+                    <FormattedMessage id="Footer.rentalForms" />
+                  </NamedLink>
+                </li>
+
+                <li className={css.listHeader} style={{marginTop: "15px"}}>
+                  <FormattedMessage id="Footer.customerCenter" />
+                </li>
+                <li className={css.listItem}>
+                  <NamedLink name="LandingPage" className={css.link}>
+                    <FormattedMessage id="Footer.customerFAQ" />
                   </NamedLink>
                 </li>
                 <li className={css.listItem}>
-                  <NamedLink
-                    name="SearchPage"
-                    to={{
-                      search:
-                        '?address=Ahvenanmaan%20saaristo%2C%20Åland%20Islands&bounds=60.87664400000001%2C21.34532850000005%2C59.45425059999999%2C19.94061499999998&origin=59.8994405%2C20.593996100000027',
-                    }}
-                    className={css.link}
-                  >
-                    <FormattedMessage id="Footer.searchAhvenanmaa" />
+                  <NamedLink name="LandingPage" className={css.link}>
+                    <FormattedMessage id="Footer.howCustomers" />
+                  </NamedLink>
+                </li>
+                <li className={css.listItem}>
+                  <NamedLink name="LandingPage" className={css.link}>
+                    <FormattedMessage id="Footer.insurance" />
+                  </NamedLink>
+                </li>
+                <li className={css.listItem}>
+                  <NamedLink name="LandingPage" className={css.link}>
+                    <FormattedMessage id="Footer.help" />
                   </NamedLink>
                 </li>
               </ul>

@@ -7,7 +7,7 @@
 
   width: 100%;
   padding: 24px 24px 42px 24px;
-  background-color: var(--matterColorBright);
+  background-color: var(--marketplaceColor);
 
   @media (--viewportMedium) {
     padding: 0 24px 33px 24px;
@@ -71,6 +71,13 @@
   margin-right: 12px;
   text-align: center;
 }
+.icon svg{
+  fill: var(--matterColorLight);
+
+  &:hover {
+    fill: var(--marketplaceColorLight);
+  }
+}
 
 /* Footer links */
 .links {
@@ -129,6 +136,7 @@
 .organizationDescription,
 .organizationCopyright {
   @apply --marketplaceTinyFontStyles;
+  color: var(--matterColorLight);
 }
 
 .organizationCopyright {
@@ -136,11 +144,11 @@
 }
 
 .copyrightLink {
-  color: var(--matterColor);
+  color: var(--matterColorLight);
   transition: var(--transitionStyleButton);
 
   &:hover {
-    color: var(--marketplaceColor);
+    color: var(--marketplaceColorLight);
     text-decoration: none;
   }
 }
@@ -164,8 +172,19 @@
 }
 
 .listItem {
-  min-height: 24px;
-  margin-bottom: 6px;
+  min-height: 20px;
+  margin-bottom: 3px;
+  font-weight: var(--fontWeightRegular);
+
+  @media (--viewportMedium) {
+    margin-bottom: 0;
+  }
+}
+.listHeader {
+  min-height: 20px;
+  margin-bottom: 3px;
+  font-weight: var(--fontWeightSemiBold);
+  color: var(--matterColorLight);
 
   @media (--viewportMedium) {
     margin-bottom: 0;
@@ -176,14 +195,15 @@
   /* Font */
   @apply --marketplaceH5FontStyles;
   line-height: 20px;
-  color: var(--matterColor);
+  color: var(--matterColorLight);
   transition: var(--transitionStyleButton);
+  font-weight: var(--fontWeightRegular);
 
   margin-top: 0;
   margin-bottom: 12px;
 
   &:hover {
-    color: var(--marketplaceColor);
+    color: var(--marketplaceColorLight);
     text-decoration: none;
   }
 
@@ -224,7 +244,7 @@
 .extraLinks {
   flex-shrink: 0;
   order: 5;
-  display: none;
+  display: block;
   flex-basis: 109px;
   margin-right: 24px;
   margin-bottom: 24px;
@@ -246,7 +266,7 @@
   /* Layout */
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 .tosAndPrivacy {
@@ -263,14 +283,14 @@
 .terms {
   /* Font */
   @apply --marketplaceTinyFontStyles;
-  color: var(--matterColorAnti);
+  color: var(--matterColorLight);
   transition: var(--transitionStyleButton);
 
   margin-top: 0;
   margin-bottom: 0;
 
   &:hover {
-    color: var(--marketplaceColor);
+    color: var(--marketplaceColorLight);
     text-decoration: none;
   }
 
@@ -307,7 +327,7 @@
 .organizationCopyrightMobile {
   /* Font */
   @apply --marketplaceTinyFontStyles;
-  color: var(--matterColorAnti);
+  color: var(--matterColorLight);
   transition: var(--transitionStyleButton);
 
   /* Tell parent component how much space this one prefers */
@@ -317,7 +337,7 @@
   margin-bottom: 0;
 
   &:hover {
-    color: var(--marketplaceColor);
+    color: var(--marketplaceColorLight);
     text-decoration: none;
   }
 }
