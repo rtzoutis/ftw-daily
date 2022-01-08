@@ -88,6 +88,7 @@ export const filters = [
         { key: 'smoke', label: 'Smoke' },
         { key: 'electric', label: 'Electric' },
         { key: 'wood', label: 'Wood' },
+        { key: 'car', label: 'Car' },
         { key: 'other', label: 'Other' },
       ],
     },
@@ -139,6 +140,10 @@ export const filters = [
         {
           key: 'own_food_allowed',
           label: 'Own food allowed',
+        },
+        {
+          key: 'air_condition',
+          label: 'Air Condition',
         },
       ],
     },

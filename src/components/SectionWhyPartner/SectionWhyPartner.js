@@ -33,7 +33,7 @@ const SectionWhyPartner = props => {
           <img src={whyPartner}/>
         </div>
         <div className={css.text}>
-          <p>
+          <p style={{marginTop: "0px"}}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dapibus, magna ultrices lacinia lobortis, justo mi iaculis orci, vitae suscipit nunc massa ut nibh. Suspendisse lacinia dolor nec nisl interdum fermentum. Donec elementum vitae velit dignissim mattis. Proin tempor, mauris ac molestie porta, massa nisl sollicitudin nisi, id ornare tortor magna quis nibh. Aenean commodo erat nec volutpat porta. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vitae nulla id odio dignissim mollis ut nec dui.
           </p>
           <p>

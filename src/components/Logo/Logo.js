@@ -5,17 +5,18 @@ import classNames from 'classnames';
 import config from '../../config';
 import IconLogo from './IconLogo';
 import LogoImage from './ezride-logo.png';
+import LogoWhiteImage from './ezride-logo-white.png';
 import css from './Logo.module.css';
 
 const Logo = props => {
-  const { className, format, ...rest } = props;
+  const { className, format, isWhite, ...rest } = props;
   const mobileClasses = classNames(css.logoMobile, className);
 
   if (format === 'desktop') {
-    return <img className={className} src={LogoImage} alt={config.siteTitle} {...rest} />;
+    return <img className={className} src={isWhite?LogoWhiteImage:LogoImage} alt={config.siteTitle} {...rest} />;
   }
-
-  return <IconLogo className={mobileClasses} {...rest} />;
+  return <img className={mobileClasses} src={isWhite?LogoWhiteImage:LogoImage} alt={config.siteTitle} {...rest} />;
+  //return <IconLogo className={mobileClasses} {...rest} />;
 };
 
 const { oneOf, string } = PropTypes;

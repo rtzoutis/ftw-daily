@@ -19,8 +19,13 @@
 }
 
 .img{
-  flex: 1;
-  max-width: 22%;
+  padding: 10px;
+  flex: 0 0 50%;  
+
+  @media (--viewportSmall) {
+    flex: 1;
+    max-width: 25%;
+  }
 }
 .img img{
   width: 100%;

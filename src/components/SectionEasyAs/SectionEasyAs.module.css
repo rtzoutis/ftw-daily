@@ -14,14 +14,13 @@
   flex-direction: column;
   margin-top: 0px;
   margin-bottom: 10px;
+  padding: 40px;
 
-  @media (--viewportMedium) {
+  @media (--viewportSmall) {
     flex-direction: row;
     margin-top: 33px;
+    padding: 0px;
     flex-flow: wrap;
-    justify-content: space-between;
-  }
-  @media (--viewportMedium) {
     justify-content: center;
   }
   @media (--viewportLarge) {

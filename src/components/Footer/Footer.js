@@ -62,11 +62,11 @@ const Footer = props => {
     <div className={classes}>
       <div className={css.topBorderWrapper}>
         <div className={css.content}>
-          <div className={css.someLiksMobile}>{socialMediaLinks}</div>
+          {/*<div className={css.someLiksMobile}>{socialMediaLinks}</div>*/}
           <div className={css.links}>
             <div className={css.organization} id="organization">
               <NamedLink name="LandingPage" className={css.logoLink}>
-                <Logo format="desktop" className={css.logo} />
+                <Logo isWhite={true} format="desktop" className={css.logo} />
               </NamedLink>
               <div className={css.organizationInfo}>
                 <p className={css.organizationDescription}>
@@ -81,7 +81,7 @@ const Footer = props => {
             </div>
             <div className={css.infoLinks}>
               <ul className={css.list}>
-                <li className={css.listHeader} style={{textTransform: "uppercase"}}>
+                <li className={css.listHeader}>
                   <FormattedMessage id="Footer.weRent" />
                 </li>
                 <li className={css.listItem}>

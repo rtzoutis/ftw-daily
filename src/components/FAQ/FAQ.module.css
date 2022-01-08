@@ -41,5 +41,7 @@
   cursor: pointer;
   color: var(--marketplaceColorLight2);
   position: relative;
+  display: flex;
+  flex-flow: row;
   margin: 0px;
 }
