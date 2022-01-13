@@ -8,6 +8,9 @@ import { Collapse, CardBody, Card, CardHeader } from 'reactstrap';
 
 import css from './FAQ.module.css';
 
+import rightArrow from './images/right_arrow.png';
+import downArrow from './images/down_arrow.png';
+
 class LocationImage extends Component {
   render() {
     const { alt, ...rest } = this.props;
@@ -27,15 +30,17 @@ class FAQQuestion extends Component {
   render() {
     return <div>
       <div className={css.question} onClick={() => this.setState({isOpen: !this.state.isOpen})}>
-        <div style={{flex: "0 0 25px", position: "relative", fontWeight: "bold", left: this.state.isOpen?"5px":"0px", top: this.state.isOpen?"-4px":"-2px", fontSize: "120%"}}>{this.state.isOpen?"-":"+"}</div>
         <div style={{flex: "0 0 25px"}}>
           {this.props.number}.
         </div>
-        <div>
+        <div style={{flex: "0 0 420px"}}>
           {this.props.question}
         </div>
+        <div style={{flex: "0 0 15px"}}>
+          <img style={{width: "100%", height: "auto", marginTop: "-5px"}} src={this.state.isOpen?downArrow:rightArrow}/>
+        </div>
       </div>
-      <div style={{paddingLeft: "50px", color: "#666666"}}>
+      <div style={{paddingLeft: "26px", color: "#666666"}}>
         <Collapse isOpen={this.state.isOpen}>
           {this.props.answer}
         </Collapse>

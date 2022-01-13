@@ -38,10 +38,14 @@
 }
 
 .heroContent {
-  margin: 0 24px 0 24px;
+  margin: 0 42% 0 12px;
+
+  @media (--viewportSmall) {
+    margin: 0 45% 0 7.5vw;
+  }
 
   @media (--viewportMedium) {
-    margin: 0 7.5vw 0 7.5vw;
+    margin: 0 43% 0 7.5vw;
   }
 
   /* Special viewport for adjusting the heroContent's placement */
@@ -60,7 +64,7 @@
 
 .heroMainTitle {
   @apply --marketplaceHeroTitleFontStyles;
-  filter: drop-shadow(2px 1px 1px white);
+  /*filter: drop-shadow(2px 1px 1px white);*/
 
   composes: animation;
   animation-delay: 0.5s;
@@ -73,7 +77,7 @@
 .heroSubTitle {
   @apply --marketplaceH2FontStyles;
   font-weight: var(--fontWeightMedium);
-  filter: drop-shadow(2px 1px 1px white);
+  /*filter: drop-shadow(2px 1px 1px white);*/
   font-size: 30px;
 
   color: var(--marketplaceColorDark);

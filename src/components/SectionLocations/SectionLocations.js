@@ -11,6 +11,9 @@ import css from './SectionLocations.module.css';
 import helsinkiImage from './images/location_helsinki.jpg';
 import rovaniemiImage from './images/location_rovaniemi.jpg';
 import rukaImage from './images/location_ruka.jpg';
+import parosImage from './images/paros.jpg';
+import santoriniImage from './images/santorini.jpg';
+import creteImage from './images/crete.jpg';
 
 class LocationImage extends Component {
   render() {
@@ -49,17 +52,17 @@ const SectionLocations = props => {
       <div className={css.locations}>
         {locationLink(
           'Paros',
-          helsinkiImage,
+          parosImage,
           '?address=Paros%2C%20South%20Aegean%2C%20Greece&bounds=37.13512%2C25.198458%2C36.96768%2C25.097698'
         )}
         {locationLink(
           'Santorini',
-          rovaniemiImage,
+          santoriniImage,
           '?address=Santorini%2C%20Νήσος%20Σαντορίνη%2C%20Thira%2C%20South%20Aegean%20847%2000%2C%20Greece&bounds=36.5120665%2C25.52204868%2C36.3225553%2C25.34343807'
         )}
         {locationLink(
           'Crete',
-          rukaImage,
+          creteImage,
           '?address=Crete%2C%20Greece&bounds=35.7764068975512%2C26.4520820779446%2C34.7186774013626%2C23.3745288060402'
         )}
       </div>

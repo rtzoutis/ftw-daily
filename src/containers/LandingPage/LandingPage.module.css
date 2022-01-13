@@ -33,11 +33,11 @@
   padding-bottom: 32px;
 
   @media (--viewportMedium) {
+    justify-content: flex-start;
     padding-bottom: 83px;
   }
 
   @media (--viewportLarge) {
-    justify-content: center;
     padding-top: 60px;
   }
 }

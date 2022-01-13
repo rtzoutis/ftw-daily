@@ -34,7 +34,31 @@
 .img{
   flex: 1;
 }
-.img img{
+.img div{
   width: 100%;
   height: 100%;
+  padding-bottom: 100%;
+  background-size: contain;
+}
+
+.select{
+  background-image: url('./images/easyas_select_mobile.png');
+
+  @media (--viewportSmall) {
+    background-image: url('./images/easyas_select.png');
+  }
+}
+.confirm{
+  background-image: url('./images/easyas_confirm_mobile.png');
+
+  @media (--viewportSmall) {
+    background-image: url('./images/easyas_confirm.png');
+  }
+}
+.ride{
+  background-image: url('./images/easyas_ride_mobile.png');
+
+  @media (--viewportSmall) {
+    background-image: url('./images/easyas_ride.png');
+  }
 }

@@ -8,10 +8,6 @@ import { NamedLink } from '../../components';
 
 import css from './SectionEasyAs.module.css';
 
-import confirmImage from './images/easyas_confirm.png';
-import rideImage from './images/easyas_ride.png';
-import selectImage from './images/easyas_select.png';
-
 class LocationImage extends Component {
   render() {
     const { alt, ...rest } = this.props;
@@ -32,13 +28,13 @@ const SectionEasyAs = props => {
       </div>
       <div className={css.easyas}>
         <div className={css.img}>
-          <img src={selectImage}/>
+          <div className={css.select}></div>
         </div>
         <div className={css.img}>
-          <img src={confirmImage}/>
+          <div className={css.confirm}></div>
         </div>
         <div className={css.img}>
-          <img src={rideImage}/>
+          <div className={css.ride}></div>
         </div>
       </div>
     </div>

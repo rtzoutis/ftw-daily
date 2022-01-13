@@ -9,6 +9,7 @@ import { NamedLink } from '../../components';
 import css from './SectionWhyChoose.module.css';
 
 import availableAnywhere from './images/whychoose_availableanywhere.png';
+import instantAvailability from './images/whychoose_instantavailability.png';
 import competitivePrices from './images/whychoose_competitiveprices.png';
 import trustedProviders from './images/whychoose_trustedproviders.png';
 import wideRange from './images/whychoose_widerange.png';
@@ -39,7 +40,7 @@ const SectionWhyChoose = props => {
           <img src={competitivePrices}/>
         </div>
         <div className={css.img}>
-          <img src={availableAnywhere}/>
+          <img src={instantAvailability}/>
         </div>
         <div className={css.img}>
           <img src={trustedProviders}/>
