@@ -53,7 +53,7 @@ const SectionLookingFor = props => {
       </div>
       <div className={css.locations}>
         {locationLink(
-          'Vehicles',
+          'Cars',
           vehiclesImage,
           '?address=Helsinki%2C%20Finland&bounds=60.2978389%2C25.254484899999966%2C59.9224887%2C24.782875800000056&origin=60.16985569999999%2C24.93837910000002'
         )}

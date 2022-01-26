@@ -45,3 +45,8 @@
   flex-flow: row;
   margin: 0px;
 }
+
+.questionText{
+  flex: 0 0 440px;
+  max-width: calc(100% - 35px);
+}
