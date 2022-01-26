@@ -108,6 +108,7 @@ class GeocoderMapbox {
         limit: 5,
         ...limitCountriesMaybe,
         language: [config.locale],
+        types: ["country", "region", "postcode", "district", "place"],
       })
       .send()
       .then(response => {
