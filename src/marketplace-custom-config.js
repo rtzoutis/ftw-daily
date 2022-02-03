@@ -85,10 +85,54 @@ export const filters = [
       // Note: label is not added through the translation files
       // to make filter customizations a bit easier.
       options: [
+        { key: 'road', label: 'Road' },
+        { key: 'sea', label: 'Sea' },
+      ],
+    },
+  },
+  {
+    id: 'subcategory',
+    label: 'Subcategory',
+    type: 'SelectSingleFilter',
+    group: 'secondary',
+    queryParamNames: ['pub_subcategory'],
+    config: {
+      // "key" is the option you see in Flex Console.
+      // "label" is set here for the UI only.
+      // Note: label is not added through the translation files
+      // to make filter customizations a bit easier.
+      options: [
+        { key: 'car', label: 'Car', category: 'road' },
+        { key: 'motorcycle', label: 'Motorcycle', category: 'road' },
+        { key: 'bicycle', label: 'Standard Bicycle', category: 'road' },
+        { key: 'ebike', label: 'E-Bike', category: 'road' },
+        { key: 'quad', label: 'Quad Bike', category: 'road' },
+        { key: 'buggy', label: 'Buggy', category: 'road' },
+        { key: 'scooter', label: 'Scooter', category: 'road' },
+        { key: 'escooter', label: 'E-Scooter', category: 'road' },
+        { key: 'rib', label: 'Rib', category: 'sea' },
+        { key: 'sailboat', label: 'Sailboat', category: 'sea' },
+        { key: 'canoe', label: 'Canoe', category: 'sea' },
+        { key: 'surfboard', label: 'Surfboard', category: 'sea' },
+        { key: 'yacht', label: 'Yacht', category: 'sea' },
+      ],
+    },
+  },
+  {
+    id: 'type',
+    label: 'Type',
+    type: 'SelectSingleFilter',
+    group: 'secondary',
+    queryParamNames: ['pub_type'],
+    config: {
+      // "key" is the option you see in Flex Console.
+      // "label" is set here for the UI only.
+      // Note: label is not added through the translation files
+      // to make filter customizations a bit easier.
+      options: [
         { key: 'smoke', label: 'Smoke' },
         { key: 'electric', label: 'Electric' },
         { key: 'wood', label: 'Wood' },
-        { key: 'car', label: 'Car' },
         { key: 'other', label: 'Other' },
       ],
     },
@@ -140,10 +184,6 @@ export const filters = [
         {
           key: 'own_food_allowed',
           label: 'Own food allowed',
-        },
-        {
-          key: 'air_condition',
-          label: 'Air Condition',
         },
       ],
     },

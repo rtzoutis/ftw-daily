@@ -6,12 +6,12 @@ import { ensureOwnListing } from '../../util/data';
 import { findOptionsForSelectFilter } from '../../util/search';
 import { LISTING_STATE_DRAFT } from '../../util/types';
 import { ListingLink } from '../../components';
-import { EditListingDescriptionForm } from '../../forms';
+import { EditListingCategoryForm } from '../../forms';
 import config from '../../config';
 
-import css from './EditListingDescriptionPanel.module.css';
+import css from './EditListingCategoryPanel.module.css';
 
-const EditListingDescriptionPanel = props => {
+const EditListingCategoryPanel = props => {
   const {
     className,
     rootClassName,
@@ -28,33 +28,31 @@ const EditListingDescriptionPanel = props => {
 
   const classes = classNames(rootClassName || css.root, className);
   const currentListing = ensureOwnListing(listing);
-  const { description, title, publicData } = currentListing.attributes;
+  const { publicData } = currentListing.attributes;
 
   const isPublished = currentListing.id && currentListing.attributes.state !== LISTING_STATE_DRAFT;
   const panelTitle = isPublished ? (
     <FormattedMessage
-      id="EditListingDescriptionPanel.title"
+      id="EditListingCategoryPanel.title"
       values={{ listingTitle: <ListingLink listing={listing} /> }}
     />
   ) : (
-    <FormattedMessage id="EditListingDescriptionPanel.createListingTitle" />
+    <FormattedMessage id="EditListingCategoryPanel.createListingTitle" />
   );
 
-  //const categoryOptions = findOptionsForSelectFilter('category', config.custom.filters);
-  //const subcategoryOptions = findOptionsForSelectFilter('subcategory', config.custom.filters);
+  const categoryOptions = findOptionsForSelectFilter('category', config.custom.filters);
+  const subcategoryOptions = findOptionsForSelectFilter('subcategory', config.custom.filters);
   return (
     <div className={classes}>
       <h1 className={css.title}>{panelTitle}</h1>
-      <EditListingDescriptionForm
+      <EditListingCategoryForm
         className={css.form}
-        initialValues={{ title, description }}
+        initialValues={{ category: publicData.category, subcategory: publicData.subcategory }}
         saveActionMsg={submitButtonText}
         onSubmit={values => {
-          const { title, description } = values;
+          const { category, subcategory } = values;
           const updateValues = {
-            title: title.trim(),
-            description,
-            //publicData: {  },
+            publicData: { category, subcategory },
           };
 
           onSubmit(updateValues);
@@ -67,19 +65,21 @@ const EditListingDescriptionPanel = props => {
         updated={panelUpdated}
         updateInProgress={updateInProgress}
         fetchErrors={errors}
+        categories={categoryOptions}
+        subcategories={subcategoryOptions}
       />
     </div>
   );
 };
 
-EditListingDescriptionPanel.defaultProps = {
+EditListingCategoryPanel.defaultProps = {
   className: null,
   rootClassName: null,
   errors: null,
   listing: null,
 };
 
-EditListingDescriptionPanel.propTypes = {
+EditListingCategoryPanel.propTypes = {
   className: string,
   rootClassName: string,
 
@@ -96,4 +96,4 @@ EditListingDescriptionPanel.propTypes = {
   errors: object.isRequired,
 };
 
-export default EditListingDescriptionPanel;
+export default EditListingCategoryPanel;

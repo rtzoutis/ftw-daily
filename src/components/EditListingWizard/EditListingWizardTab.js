@@ -11,6 +11,7 @@ import { ensureListing } from '../../util/data';
 import { createResourceLocatorString } from '../../util/routes';
 import {
   EditListingAvailabilityPanel,
+  EditListingCategoryPanel,
   EditListingDescriptionPanel,
   EditListingFeaturesPanel,
   EditListingLocationPanel,
@@ -22,6 +23,7 @@ import {
 import css from './EditListingWizard.module.css';
 
 export const AVAILABILITY = 'availability';
+export const CATEGORY = 'category';
 export const DESCRIPTION = 'description';
 export const FEATURES = 'features';
 export const POLICY = 'policy';
@@ -31,6 +33,7 @@ export const PHOTOS = 'photos';
 
 // EditListingWizardTab component supports these tabs
 export const SUPPORTED_TABS = [
+  CATEGORY,
   DESCRIPTION,
   FEATURES,
   POLICY,
@@ -157,6 +160,20 @@ const EditListingWizardTab = props => {
   };
 
   switch (tab) {
+    case CATEGORY: {
+      const submitButtonTranslationKey = isNewListingFlow
+        ? 'EditListingWizard.saveNewCategory'
+        : 'EditListingWizard.saveEditCategory';
+      return (
+        <EditListingCategoryPanel
+          {...panelProps(DESCRIPTION)}
+          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
+          onSubmit={values => {
+            onCompleteEditListingWizardTab(tab, values);
+          }}
+        />
+      );
+    }
     case DESCRIPTION: {
       const submitButtonTranslationKey = isNewListingFlow
         ? 'EditListingWizard.saveNewDescription'

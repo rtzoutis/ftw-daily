@@ -7,14 +7,14 @@ import classNames from 'classnames';
 import { propTypes } from '../../util/types';
 import { maxLength, required, composeValidators } from '../../util/validators';
 import { Form, Button, FieldTextInput } from '../../components';
-import CustomCategorySelectFieldMaybe from './CustomCategorySelectFieldMaybe';
-import CustomSubcategorySelectFieldMaybe from './CustomSubcategorySelectFieldMaybe';
+import CustomCategorySelectFieldMaybe from '../EditListingDescriptionForm/CustomCategorySelectFieldMaybe';
+import CustomSubcategorySelectFieldMaybe from '../EditListingDescriptionForm/CustomSubcategorySelectFieldMaybe';
 
-import css from './EditListingDescriptionForm.module.css';
+import css from './EditListingCategoryForm.module.css';
 
 const TITLE_MAX_LENGTH = 60;
 
-const EditListingDescriptionFormComponent = props => (
+const EditListingCategoryFormComponent = props => (
   <FinalForm
     {...props}
     render={formRenderProps => {
@@ -34,48 +34,48 @@ const EditListingDescriptionFormComponent = props => (
         fetchErrors,
       } = formRenderProps;
 
-      const titleMessage = intl.formatMessage({ id: 'EditListingDescriptionForm.title' });
+      const titleMessage = intl.formatMessage({ id: 'EditListingCategoryForm.title' });
       const titlePlaceholderMessage = intl.formatMessage({
-        id: 'EditListingDescriptionForm.titlePlaceholder',
+        id: 'EditListingCategoryForm.titlePlaceholder',
       });
       const titleRequiredMessage = intl.formatMessage({
-        id: 'EditListingDescriptionForm.titleRequired',
+        id: 'EditListingCategoryForm.titleRequired',
       });
       const maxLengthMessage = intl.formatMessage(
-        { id: 'EditListingDescriptionForm.maxLength' },
+        { id: 'EditListingCategoryForm.maxLength' },
         {
           maxLength: TITLE_MAX_LENGTH,
         }
       );
 
       const descriptionMessage = intl.formatMessage({
-        id: 'EditListingDescriptionForm.description',
+        id: 'EditListingCategoryForm.description',
       });
       const descriptionPlaceholderMessage = intl.formatMessage({
-        id: 'EditListingDescriptionForm.descriptionPlaceholder',
+        id: 'EditListingCategoryForm.descriptionPlaceholder',
       });
       const maxLength60Message = maxLength(maxLengthMessage, TITLE_MAX_LENGTH);
       const descriptionRequiredMessage = intl.formatMessage({
-        id: 'EditListingDescriptionForm.descriptionRequired',
+        id: 'EditListingCategoryForm.descriptionRequired',
       });
 
       const { updateListingError, createListingDraftError, showListingsError } = fetchErrors || {};
       const errorMessageUpdateListing = updateListingError ? (
         <p className={css.error}>
-          <FormattedMessage id="EditListingDescriptionForm.updateFailed" />
+          <FormattedMessage id="EditListingCategoryForm.updateFailed" />
         </p>
       ) : null;
 
       // This error happens only on first tab (of EditListingWizard)
       const errorMessageCreateListingDraft = createListingDraftError ? (
         <p className={css.error}>
-          <FormattedMessage id="EditListingDescriptionForm.createListingDraftError" />
+          <FormattedMessage id="EditListingCategoryForm.createListingDraftError" />
         </p>
       ) : null;
 
       const errorMessageShowListing = showListingsError ? (
         <p className={css.error}>
-          <FormattedMessage id="EditListingDescriptionForm.showListingFailed" />
+          <FormattedMessage id="EditListingCategoryForm.showListingFailed" />
         </p>
       ) : null;
 
@@ -89,27 +89,6 @@ const EditListingDescriptionFormComponent = props => (
           {errorMessageCreateListingDraft}
           {errorMessageUpdateListing}
           {errorMessageShowListing}
-          <FieldTextInput
-            id="title"
-            name="title"
-            className={css.title}
-            type="text"
-            label={titleMessage}
-            placeholder={titlePlaceholderMessage}
-            maxLength={TITLE_MAX_LENGTH}
-            validate={composeValidators(required(titleRequiredMessage), maxLength60Message)}
-            autoFocus
-          />
-
-          <FieldTextInput
-            id="description"
-            name="description"
-            className={css.description}
-            type="textarea"
-            label={descriptionMessage}
-            placeholder={descriptionPlaceholderMessage}
-            validate={composeValidators(required(descriptionRequiredMessage))}
-          />
 
           <CustomCategorySelectFieldMaybe
             id="category"
@@ -141,9 +120,9 @@ const EditListingDescriptionFormComponent = props => (
   />
 );
 
-EditListingDescriptionFormComponent.defaultProps = { className: null, fetchErrors: null };
+EditListingCategoryFormComponent.defaultProps = { className: null, fetchErrors: null };
 
-EditListingDescriptionFormComponent.propTypes = {
+EditListingCategoryFormComponent.propTypes = {
   className: string,
   intl: intlShape.isRequired,
   onSubmit: func.isRequired,
@@ -172,4 +151,4 @@ EditListingDescriptionFormComponent.propTypes = {
   ),
 };
 
-export default compose(injectIntl)(EditListingDescriptionFormComponent);
+export default compose(injectIntl)(EditListingCategoryFormComponent);
