@@ -5,13 +5,13 @@ import { FormattedMessage } from '../../util/reactIntl';
 import { ensureOwnListing } from '../../util/data';
 import { findOptionsForSelectFilter } from '../../util/search';
 import { LISTING_STATE_DRAFT } from '../../util/types';
-import { ListingLink } from '../../components';
-import { EditListingCategoryForm } from '../../forms';
+import { ListingLink } from '..';
+import { EditListingGeneralForm } from '../../forms';
 import config from '../../config';
 
-import css from './EditListingCategoryPanel.module.css';
+import css from './EditListingGeneralPanel.module.css';
 
-const EditListingCategoryPanel = props => {
+const EditListingGeneralPanel = props => {
   const {
     className,
     rootClassName,
@@ -33,53 +33,58 @@ const EditListingCategoryPanel = props => {
   const isPublished = currentListing.id && currentListing.attributes.state !== LISTING_STATE_DRAFT;
   const panelTitle = isPublished ? (
     <FormattedMessage
-      id="EditListingCategoryPanel.title"
+      id="EditListingGeneralPanel.title"
       values={{ listingTitle: <ListingLink listing={listing} /> }}
     />
   ) : (
-    <FormattedMessage id="EditListingCategoryPanel.createListingTitle" />
+    <FormattedMessage id="EditListingGeneralPanel.createListingTitle" />
   );
 
-  const categoryOptions = findOptionsForSelectFilter('category', config.custom.filters);
-  const subcategoryOptions = findOptionsForSelectFilter('subcategory', config.custom.filters);
+  const colorOptions = findOptionsForSelectFilter('color', config.custom.filters);
+
+  const types = publicData && publicData.types;
+  const subcategory = publicData && publicData.subcategory;
+  const reference_link = publicData && publicData.reference_link;
+  const listing_code = publicData && publicData.listing_code;
+  const color = publicData && publicData.color;
+  const initialValues = { types, subcategory, reference_link, listing_code, color };
+
   return (
     <div className={classes}>
       <h1 className={css.title}>{panelTitle}</h1>
-      <EditListingCategoryForm
+      <EditListingGeneralForm
         className={css.form}
-        initialValues={{ category: publicData.category, subcategory: publicData.subcategory }}
-        saveActionMsg={submitButtonText}
+        name={'types'}
+        initialValues={initialValues}
         onSubmit={values => {
-          const { category, subcategory } = values;
-          const updateValues = {
-            publicData: { category, subcategory },
-          };
+          const { types = [], reference_link, listing_code, color } = values;
 
-          onSubmit(updateValues);
+          const updatedValues = {
+            publicData: { types, reference_link, listing_code, color },
+          };
+          onSubmit(updatedValues);
         }}
-        onChange={(values) => {
-          console.log(values);
-        }}
+        onChange={onChange}
+        saveActionMsg={submitButtonText}
         disabled={disabled}
         ready={ready}
         updated={panelUpdated}
         updateInProgress={updateInProgress}
+        colors={colorOptions}
         fetchErrors={errors}
-        categories={categoryOptions}
-        subcategories={subcategoryOptions}
       />
     </div>
   );
 };
 
-EditListingCategoryPanel.defaultProps = {
+EditListingGeneralPanel.defaultProps = {
   className: null,
   rootClassName: null,
   errors: null,
   listing: null,
 };
 
-EditListingCategoryPanel.propTypes = {
+EditListingGeneralPanel.propTypes = {
   className: string,
   rootClassName: string,
 
@@ -96,4 +101,4 @@ EditListingCategoryPanel.propTypes = {
   errors: object.isRequired,
 };
 
-export default EditListingCategoryPanel;
+export default EditListingGeneralPanel;

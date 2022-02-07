@@ -19,9 +19,9 @@ import { Modal, NamedRedirect, Tabs, StripeConnectAccountStatusBox } from '../..
 import { StripeConnectAccountForm } from '../../forms';
 
 import EditListingWizardTab, {
-  CATEGORY,
   AVAILABILITY,
   DESCRIPTION,
+  GENERAL,
   FEATURES,
   POLICY,
   LOCATION,
@@ -38,8 +38,8 @@ const availabilityMaybe = config.enableAvailability ? [AVAILABILITY] : [];
 // Note 2: Ensure that draft listing is created after the first panel
 // and listing publishing happens after last panel.
 export const TABS = [
-  CATEGORY,
   DESCRIPTION,
+  GENERAL,
   FEATURES,
   POLICY,
   LOCATION,
@@ -58,10 +58,10 @@ const tabLabel = (intl, tab) => {
   let key = null;
   if (tab === DESCRIPTION) {
     key = 'EditListingWizard.tabLabelDescription';
-  } else if (tab === CATEGORY) {
-    key = 'EditListingWizard.tabLabelCategory';
   } else if (tab === FEATURES) {
     key = 'EditListingWizard.tabLabelFeatures';
+  } else if (tab === GENERAL) {
+    key = 'EditListingWizard.tabLabelGeneral';
   } else if (tab === POLICY) {
     key = 'EditListingWizard.tabLabelPolicy';
   } else if (tab === LOCATION) {
@@ -97,10 +97,10 @@ const tabCompleted = (tab, listing) => {
   const images = listing.images;
 
   switch (tab) {
-    case CATEGORY:
-      return !!(publicData && publicData.category && publicData.subcategory);
     case DESCRIPTION:
-      return !!(description && title);
+      return !!(description && title && publicData && publicData.category && publicData.subcategory);
+    case GENERAL:
+      return !!(publicData && publicData.types && publicData.reference_link && publicData.listing_code && publicData.color);
     case FEATURES:
       return !!(publicData && publicData.amenities);
     case POLICY:

@@ -10,14 +10,14 @@ function CustomSubcategorySelectFieldMaybe(props){
   const formState = useFormState();
   const { name, id, subcategories, category_field, intl } = props;
   const categoryLabel = intl.formatMessage({
-    id: 'EditListingDescriptionForm.categoryLabel',
+    id: 'EditListingDescriptionForm.subcategoryLabel',
   });
   const categoryPlaceholder = intl.formatMessage({
-    id: 'EditListingDescriptionForm.categoryPlaceholder',
+    id: 'EditListingDescriptionForm.subcategoryPlaceholder',
   });
   const categoryRequired = required(
     intl.formatMessage({
-      id: 'EditListingDescriptionForm.categoryRequired',
+      id: 'EditListingDescriptionForm.subcategoryRequired',
     })
   );
   return subcategories ? (

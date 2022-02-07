@@ -40,21 +40,21 @@ const EditListingDescriptionPanel = props => {
     <FormattedMessage id="EditListingDescriptionPanel.createListingTitle" />
   );
 
-  //const categoryOptions = findOptionsForSelectFilter('category', config.custom.filters);
-  //const subcategoryOptions = findOptionsForSelectFilter('subcategory', config.custom.filters);
+  const categoryOptions = findOptionsForSelectFilter('category', config.custom.filters);
+  const subcategoryOptions = findOptionsForSelectFilter('subcategory', config.custom.filters);
   return (
     <div className={classes}>
       <h1 className={css.title}>{panelTitle}</h1>
       <EditListingDescriptionForm
         className={css.form}
-        initialValues={{ title, description }}
+        initialValues={{ title, description, category: publicData.category, subcategory: publicData.subcategory }}
         saveActionMsg={submitButtonText}
         onSubmit={values => {
-          const { title, description } = values;
+          const { title, description, category, subcategory } = values;
           const updateValues = {
             title: title.trim(),
             description,
-            //publicData: {  },
+            publicData: { category, subcategory },
           };
 
           onSubmit(updateValues);
@@ -67,6 +67,8 @@ const EditListingDescriptionPanel = props => {
         updated={panelUpdated}
         updateInProgress={updateInProgress}
         fetchErrors={errors}
+        categories={categoryOptions}
+        subcategories={subcategoryOptions}
       />
     </div>
   );

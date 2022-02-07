@@ -52,3 +52,31 @@
     }
   }
   
+.types {
+  composes: formMargins;
+}
+
+.types ul li{
+  display: inline-block;
+  width: 100%;
+
+  @media (--viewportMedium) {
+    width: 50%;
+  }
+
+  @media (--viewportLarge) {
+    width: 25%;
+  }
+}
+
+.reference_link {
+  composes: formMargins;
+}
+
+.listing_code {
+  composes: formMargins;
+}
+
+.color {
+  composes: formMargins;
+}
