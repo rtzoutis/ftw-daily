@@ -46,7 +46,19 @@ export class ProfileSettingsPageComponent extends Component {
 
     const handleSubmit = values => {
       console.log(values);
-      const { firstName, lastName, bio: rawBio, company } = values;
+      const { 
+        firstName,
+        lastName,
+        bio: rawBio,
+        company_display_name,
+        company_description,
+        address,
+        additional_address,
+        company_legal_name,
+        vat,
+        tax_office,
+        registered_address,
+      } = values;
 
       // Ensure that the optional bio is a string
       const bio = rawBio || '';
@@ -56,7 +68,14 @@ export class ProfileSettingsPageComponent extends Component {
         lastName: lastName.trim(),
         bio,
         publicData:{
-          company
+          company_display_name,
+          company_description,
+          address,
+          additional_address,
+          company_legal_name,
+          vat,
+          tax_office,
+          registered_address,
         },
       };
       const uploadedImage = this.props.image;
@@ -79,7 +98,20 @@ export class ProfileSettingsPageComponent extends Component {
       <ProfileSettingsForm
         className={css.form}
         currentUser={currentUser}
-        initialValues={{ firstName, lastName, bio, company: publicData.company, profileImage: user.profileImage }}
+        initialValues={{
+          firstName,
+          lastName,
+          bio, 
+          company_display_name: publicData.company_display_name,
+          company_description: publicData.company_description,
+          address: publicData.address,
+          additional_address: publicData.additional_address,
+          company_legal_name: publicData.company_legal_name,
+          vat: publicData.vat,
+          tax_office: publicData.tax_office,
+          registered_address: publicData.registered_address,
+          profileImage: user.profileImage,
+        }}
         profileImage={profileImage}
         onImageUpload={e => onImageUploadHandler(e, onImageUpload)}
         uploadInProgress={uploadInProgress}
