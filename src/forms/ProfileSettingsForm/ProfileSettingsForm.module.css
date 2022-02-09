@@ -298,6 +298,15 @@
   }
 }
 
+.companyInfo {
+  color: var(--matterColorAnti);
+  margin-top: 11px;
+
+  @media (--viewportMedium) {
+    margin-top: 16px;
+  }
+}
+
 .submitButton {
   margin-top: 24px;
 }

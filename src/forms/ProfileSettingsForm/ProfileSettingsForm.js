@@ -97,6 +97,14 @@ class ProfileSettingsFormComponent extends Component {
             id: 'ProfileSettingsForm.bioPlaceholder',
           });
 
+          // Company
+          const companyLabel = intl.formatMessage({
+            id: 'ProfileSettingsForm.companyLabel',
+          });
+          const companyPlaceholder = intl.formatMessage({
+            id: 'ProfileSettingsForm.companyPlaceholder',
+          });
+
           const uploadingOverlay =
             uploadInProgress || this.state.uploadDelay ? (
               <div className={css.uploadingImageOverlay}>
@@ -253,9 +261,9 @@ class ProfileSettingsFormComponent extends Component {
                 </div>
               </div>
               <div className={css.sectionContainer}>
-                <h3 className={css.sectionTitle}>
+                {/*<h3 className={css.sectionTitle}>
                   <FormattedMessage id="ProfileSettingsForm.yourName" />
-                </h3>
+                </h3>*/}
                 <div className={css.nameContainer}>
                   <FieldTextInput
                     className={css.firstName}
@@ -277,10 +285,84 @@ class ProfileSettingsFormComponent extends Component {
                   />
                 </div>
               </div>
+              <div className={css.sectionContainer}>
+                <FieldTextInput
+                  type="text"
+                  id="company_display_name"
+                  name="company_display_name"
+                  label={companyLabel}
+                  placeholder={companyPlaceholder}
+                />
+              </div>
+              <div className={css.sectionContainer}>
+                <FieldTextInput
+                  type="textarea"
+                  id="company_description"
+                  name="company_description"
+                  label={intl.formatMessage({id: 'ProfileSettingsForm.companyDescriptionLabel'})}
+                  placeholder={intl.formatMessage({id: 'ProfileSettingsForm.companyDescriptionPlaceholder'})}
+                />
+              </div>
+              <div className={css.sectionContainer}>
+                <FieldTextInput
+                  type="text"
+                  id="address"
+                  name="address"
+                  label={intl.formatMessage({id: 'ProfileSettingsForm.addressLabel'})}
+                  placeholder={intl.formatMessage({id: 'ProfileSettingsForm.addressPlaceholder'})}
+                />
+              </div>
+              <div className={css.sectionContainer}>
+                <FieldTextInput
+                  type="text"
+                  id="additional_address"
+                  name="additional_address"
+                  label={intl.formatMessage({id: 'ProfileSettingsForm.additionalAddressLabel'})}
+                  placeholder={intl.formatMessage({id: 'ProfileSettingsForm.additionalAddressPlaceholder'})}
+                />
+              </div>
+              <div className={css.sectionContainer}>
+                <FieldTextInput
+                  type="text"
+                  id="company_legal_name"
+                  name="company_legal_name"
+                  label={intl.formatMessage({id: 'ProfileSettingsForm.companyLegalNameLabel'})}
+                  placeholder={intl.formatMessage({id: 'ProfileSettingsForm.companyLegalNamePlaceholder'})}
+                />
+              </div>
+              <div className={css.sectionContainer}>
+                {/*<h3 className={css.sectionTitle}>
+                  <FormattedMessage id="ProfileSettingsForm.yourName" />
+                </h3>*/}
+                <div className={css.nameContainer}>
+                  <FieldTextInput
+                    className={css.firstName}
+                    type="text"
+                    id="vat"
+                    name="vat"
+                    label={intl.formatMessage({id: 'ProfileSettingsForm.vatLabel'})}
+                    placeholder={intl.formatMessage({id: 'ProfileSettingsForm.vatPlaceholder'})}
+                  />
+                  <FieldTextInput
+                    className={css.lastName}
+                    type="text"
+                    id="tax_office"
+                    name="tax_office"
+                    label={intl.formatMessage({id: 'ProfileSettingsForm.taxOfficeLabel'})}
+                    placeholder={intl.formatMessage({id: 'ProfileSettingsForm.taxOfficePlaceholder'})}
+                  />
+                </div>
+              </div>
               <div className={classNames(css.sectionContainer, css.lastSection)}>
-                <h3 className={css.sectionTitle}>
-                  <FormattedMessage id="ProfileSettingsForm.bioHeading" />
-                </h3>
+                <FieldTextInput
+                  type="text"
+                  id="registered_address"
+                  name="registered_address"
+                  label={intl.formatMessage({id: 'ProfileSettingsForm.registeredAddressLabel'})}
+                  placeholder={intl.formatMessage({id: 'ProfileSettingsForm.registeredAddressPlaceholder'})}
+                />
+              </div>
+              {/*<div className={css.sectionContainer}>
                 <FieldTextInput
                   type="textarea"
                   id="bio"
@@ -291,7 +373,7 @@ class ProfileSettingsFormComponent extends Component {
                 <p className={css.bioInfo}>
                   <FormattedMessage id="ProfileSettingsForm.bioInfo" />
                 </p>
-              </div>
+              </div>*/}
               {submitError}
               <Button
                 className={css.submitButton}
