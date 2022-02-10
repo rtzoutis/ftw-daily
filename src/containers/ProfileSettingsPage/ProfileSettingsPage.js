@@ -58,6 +58,9 @@ export class ProfileSettingsPageComponent extends Component {
         vat,
         tax_office,
         registered_address,
+        low_seasons,
+        mid_seasons,
+        high_seasons,
       } = values;
 
       // Ensure that the optional bio is a string
@@ -76,6 +79,9 @@ export class ProfileSettingsPageComponent extends Component {
           vat,
           tax_office,
           registered_address,
+          low_seasons,
+          mid_seasons,
+          high_seasons,
         },
       };
       const uploadedImage = this.props.image;
@@ -110,6 +116,9 @@ export class ProfileSettingsPageComponent extends Component {
           vat: publicData.vat,
           tax_office: publicData.tax_office,
           registered_address: publicData.registered_address,
+          low_seasons: publicData.low_seasons,
+          mid_seasons: publicData.mid_seasons,
+          high_seasons: publicData.high_seasons,
           profileImage: user.profileImage,
         }}
         profileImage={profileImage}

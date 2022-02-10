@@ -9,7 +9,9 @@ import { ensureCurrentUser } from '../../util/data';
 import { propTypes } from '../../util/types';
 import * as validators from '../../util/validators';
 import { isUploadImageOverLimitError } from '../../util/errors';
-import { Form, Avatar, Button, ImageFromFile, IconSpinner, FieldTextInput } from '../../components';
+import { Form, Avatar, Button, ImageFromFile, IconSpinner, FieldTextInput, FieldDateRangeInput, FieldDateInput } from '../../components';
+
+import moment from 'moment';
 
 import css from './ProfileSettingsForm.module.css';
 
@@ -361,6 +363,33 @@ class ProfileSettingsFormComponent extends Component {
                   label={intl.formatMessage({id: 'ProfileSettingsForm.registeredAddressLabel'})}
                   placeholder={intl.formatMessage({id: 'ProfileSettingsForm.registeredAddressPlaceholder'})}
                 />
+              </div>
+              <div className={css.sectionContainer}>
+                <div className={css.daterangeContainer}>
+                  <div style={{paddingTop: "5px", flex: "0 0 125px"}}>
+                    Low Season
+                  </div>
+                  <FieldDateInput name="low_start" placeholderText="From" weekDayFormat={" "} className={css.datePicker} displayFormat={"D MMMM"} monthFormat={"MMMM"} isOutsideRange={(date) => {return false;}} enableOutsideDays={true} />
+                  <FieldDateInput name="low_end" placeholderText="To" weekDayFormat={" "} className={css.datePicker} displayFormat={"D MMMM"} monthFormat={"MMMM"} isOutsideRange={(date) => {return false;}} enableOutsideDays={true} />
+                </div>
+              </div>
+              <div className={css.sectionContainer}>
+                <div className={css.daterangeContainer}>
+                  <div style={{paddingTop: "5px", flex: "0 0 125px"}}>
+                    Mid Season
+                  </div>
+                  <FieldDateInput name="mid_start" placeholderText="From" weekDayFormat={" "} className={css.datePicker} displayFormat={"D MMMM"} monthFormat={"MMMM"} isOutsideRange={(date) => {return false;}} enableOutsideDays={true} />
+                  <FieldDateInput name="mid_end" placeholderText="To" weekDayFormat={" "} className={css.datePicker} displayFormat={"D MMMM"} monthFormat={"MMMM"} isOutsideRange={(date) => {return false;}} enableOutsideDays={true} />
+                </div>
+              </div>
+              <div className={classNames(css.sectionContainer, css.lastSection)} style={{marginBottom: "200px"}}>
+                <div className={css.daterangeContainer}>
+                  <div style={{paddingTop: "5px", flex: "0 0 125px"}}>
+                    High Season
+                  </div>
+                  <FieldDateInput name="high_start" placeholderText="From" weekDayFormat={" "} className={css.datePicker} displayFormat={"D MMMM"} monthFormat={"MMMM"} isOutsideRange={(date) => {return false;}} enableOutsideDays={true} />
+                  <FieldDateInput name="high_end" placeholderText="To" weekDayFormat={" "} className={css.datePicker} displayFormat={"D MMMM"} monthFormat={"MMMM"} isOutsideRange={(date) => {return false;}} enableOutsideDays={true} />
+                </div>
               </div>
               {/*<div className={css.sectionContainer}>
                 <FieldTextInput

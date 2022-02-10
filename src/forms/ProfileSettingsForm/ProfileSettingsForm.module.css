@@ -310,3 +310,20 @@
 .submitButton {
   margin-top: 24px;
 }
+
+.bookingDates {
+  flex-shrink: 0;
+  margin-bottom: 38px;
+
+  /* Ensure that calendar dropdown gets some stacking context relative to other form items below */
+  z-index: 1;
+}
+.datePicker .CalendarDay__outside{
+  display: none!important;
+}
+.daterangeContainer {
+  display: flex;
+}
+.daterangeContainer > div {
+  flex: 1;
+}
