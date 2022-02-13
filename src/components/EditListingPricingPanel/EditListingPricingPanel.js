@@ -9,11 +9,19 @@ import { ensureOwnListing } from '../../util/data';
 import { types as sdkTypes } from '../../util/sdkLoader';
 import config from '../../config';
 
+import { propTypes } from '../../util/types';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { sendVerificationEmail, hasCurrentUserErrors } from '../../ducks/user.duck';
+import { logout, authenticationInProgress } from '../../ducks/Auth.duck';
+import { manageDisableScrolling } from '../../ducks/UI.duck';
+
 import css from './EditListingPricingPanel.module.css';
 
 const { Money } = sdkTypes;
 
-const EditListingPricingPanel = props => {
+const EditListingPricingPanelComponent = props => {
   const {
     className,
     rootClassName,
@@ -26,6 +34,7 @@ const EditListingPricingPanel = props => {
     panelUpdated,
     updateInProgress,
     errors,
+    currentUser,
   } = props;
 
   const classes = classNames(rootClassName || css.root, className);
@@ -42,12 +51,70 @@ const EditListingPricingPanel = props => {
     <FormattedMessage id="EditListingPricingPanel.createListingTitle" />
   );
 
+  const lowSeasonsStart = [];
+  const lowSeasonsEnd = [];
+  const midSeasonsStart = [];
+  const midSeasonsEnd = [];
+  const highSeasonsStart = [];
+  const highSeasonsEnd = [];
+  for(let i = 1; i<=3; i++){
+    if(currentUser && currentUser.attributes && currentUser.attributes.profile && currentUser.attributes.profile.publicData){
+      if(currentUser.attributes.profile.publicData["low_season_start_"+i]){
+        lowSeasonsStart.push(currentUser.attributes.profile.publicData["low_season_start_"+i]);
+      }
+      if(currentUser.attributes.profile.publicData["low_season_end_"+i]){
+        lowSeasonsEnd.push(currentUser.attributes.profile.publicData["low_season_end_"+i]);
+      }
+
+      if(currentUser.attributes.profile.publicData["mid_season_start_"+i]){
+        midSeasonsStart.push(currentUser.attributes.profile.publicData["mid_season_start_"+i]);
+      }
+      if(currentUser.attributes.profile.publicData["mid_season_end_"+i]){
+        midSeasonsEnd.push(currentUser.attributes.profile.publicData["mid_season_end_"+i]);
+      }
+
+      if(currentUser.attributes.profile.publicData["high_season_start_"+i]){
+        highSeasonsStart.push(currentUser.attributes.profile.publicData["high_season_start_"+i]);
+      }
+      if(currentUser.attributes.profile.publicData["high_season_end_"+i]){
+        highSeasonsEnd.push(currentUser.attributes.profile.publicData["high_season_end_"+i]);
+      }
+    }
+  }
+
   const priceCurrencyValid = price instanceof Money ? price.currency === config.currency : true;
   const form = priceCurrencyValid ? (
     <EditListingPricingForm
       className={css.form}
       initialValues={{ price }}
-      onSubmit={onSubmit}
+      onSubmit={values => {
+        const { 
+          low_period_price_1,
+          low_period_price_2,
+          low_period_price_3,
+          mid_period_price_1,
+          mid_period_price_2,
+          mid_period_price_3,
+          high_period_price_1,
+          high_period_price_2,
+          high_period_price_3,
+        } = values;
+        const updateValues = {
+          publicData: { 
+            low_period_price_1,
+            low_period_price_2,
+            low_period_price_3,
+            mid_period_price_1,
+            mid_period_price_2,
+            mid_period_price_3,
+            high_period_price_1,
+            high_period_price_2,
+            high_period_price_3, 
+          },
+        };
+
+        onSubmit(updateValues);
+      }}
       onChange={onChange}
       saveActionMsg={submitButtonText}
       disabled={disabled}
@@ -55,6 +122,12 @@ const EditListingPricingPanel = props => {
       updated={panelUpdated}
       updateInProgress={updateInProgress}
       fetchErrors={errors}
+      lowSeasonsStart={lowSeasonsStart}
+      lowSeasonsEnd={lowSeasonsEnd}
+      midSeasonsStart={midSeasonsStart}
+      midSeasonsEnd={midSeasonsEnd}
+      highSeasonsStart={highSeasonsStart}
+      highSeasonsEnd={highSeasonsEnd}
     />
   ) : (
     <div className={css.priceCurrencyInvalid}>
@@ -72,15 +145,17 @@ const EditListingPricingPanel = props => {
 
 const { func, object, string, bool } = PropTypes;
 
-EditListingPricingPanel.defaultProps = {
+EditListingPricingPanelComponent.defaultProps = {
   className: null,
   rootClassName: null,
   listing: null,
 };
 
-EditListingPricingPanel.propTypes = {
+EditListingPricingPanelComponent.propTypes = {
   className: string,
   rootClassName: string,
+
+  currentUser: propTypes.currentUser,
 
   // We cannot use propTypes.listing since the listing might be a draft.
   listing: object,
@@ -94,5 +169,53 @@ EditListingPricingPanel.propTypes = {
   updateInProgress: bool.isRequired,
   errors: object.isRequired,
 };
+
+const mapStateToProps = state => {
+  // Topbar needs isAuthenticated
+  const { isAuthenticated, logoutError, authScopes } = state.Auth;
+  // Topbar needs user info.
+  const {
+    currentUser,
+    currentUserHasListings,
+    currentUserHasOrders,
+    currentUserNotificationCount: notificationCount,
+    sendVerificationEmailInProgress,
+    sendVerificationEmailError,
+  } = state.user;
+  const hasGenericError = !!(logoutError || hasCurrentUserErrors(state));
+  return {
+    authInProgress: authenticationInProgress(state),
+    currentUser,
+    currentUserHasListings,
+    currentUserHasOrders,
+    notificationCount,
+    isAuthenticated,
+    authScopes,
+    sendVerificationEmailInProgress,
+    sendVerificationEmailError,
+    hasGenericError,
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  onLogout: historyPush => dispatch(logout(historyPush)),
+  onManageDisableScrolling: (componentId, disableScrolling) =>
+    dispatch(manageDisableScrolling(componentId, disableScrolling)),
+  onResendVerificationEmail: () => dispatch(sendVerificationEmail()),
+});
+
+// Note: it is important that the withRouter HOC is **outside** the
+// connect HOC, otherwise React Router won't rerender any Route
+// components since connect implements a shouldComponentUpdate
+// lifecycle hook.
+//
+// See: https://github.com/ReactTraining/react-router/issues/4671
+const EditListingPricingPanel = compose(
+  withRouter,
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
+)(EditListingPricingPanelComponent);
 
 export default EditListingPricingPanel;

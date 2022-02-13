@@ -30,6 +30,12 @@ export const EditListingPricingFormComponent = props => (
         updated,
         updateInProgress,
         fetchErrors,
+        lowSeasonsStart,
+        lowSeasonsEnd,
+        midSeasonsStart,
+        midSeasonsEnd,
+        highSeasonsStart,
+        highSeasonsEnd,
       } = formRenderProps;
 
       const unitType = config.bookingUnitType;
@@ -76,6 +82,8 @@ export const EditListingPricingFormComponent = props => (
       const submitInProgress = updateInProgress;
       const submitDisabled = invalid || disabled || submitInProgress;
       const { updateListingError, showListingsError } = fetchErrors || {};
+      
+      console.log(lowSeasonsStart);
 
       return (
         <Form onSubmit={handleSubmit} className={classes}>
@@ -89,16 +97,54 @@ export const EditListingPricingFormComponent = props => (
               <FormattedMessage id="EditListingPricingForm.showListingFailed" />
             </p>
           ) : null}
-          <FieldCurrencyInput
-            id="price"
-            name="price"
-            className={css.priceInput}
-            autoFocus
-            label={pricePerUnitMessage}
-            placeholder={pricePlaceholderMessage}
-            currencyConfig={config.currencyConfig}
-            validate={priceValidators}
-          />
+
+          {lowSeasonsStart.map((date, idx) => {
+              return <p key={"low_" + date}>
+                <label style={{textDecoration: "underline"}}>Low Season Period ({lowSeasonsStart[idx]} - {lowSeasonsEnd[idx]})</label>
+                <FieldCurrencyInput
+                    id={"low_period_price_"+idx}
+                    name={"low_period_price_"+idx}
+                    className={css.priceInput}
+                    label={pricePerUnitMessage}
+                    placeholder={pricePlaceholderMessage}
+                    currencyConfig={config.currencyConfig}
+                    validate={priceValidators}
+                  />
+              </p>
+            })
+          }
+
+          {midSeasonsStart.map((date, idx) => {
+              return <p key={"mid_" + date}>
+                <label style={{textDecoration: "underline"}}>Mid Season Period ({midSeasonsStart[idx]} - {midSeasonsEnd[idx]})</label>
+                <FieldCurrencyInput
+                    id={"mid_period_price_"+idx}
+                    name={"mid_period_price_"+idx}
+                    className={css.priceInput}
+                    label={pricePerUnitMessage}
+                    placeholder={pricePlaceholderMessage}
+                    currencyConfig={config.currencyConfig}
+                    validate={priceValidators}
+                  />
+              </p>
+            })
+          }
+
+          {highSeasonsStart.map((date, idx) => {
+              return <p key={"high_" + date}>
+                <label style={{textDecoration: "underline"}}>High Season Period ({highSeasonsStart[idx]} - {highSeasonsEnd[idx]})</label>
+                <FieldCurrencyInput
+                    id={"high_period_price_"+idx}
+                    name={"high_period_price_"+idx}
+                    className={css.priceInput}
+                    label={pricePerUnitMessage}
+                    placeholder={pricePlaceholderMessage}
+                    currencyConfig={config.currencyConfig}
+                    validate={priceValidators}
+                  />
+              </p>
+            })
+          }
 
           <Button
             className={css.submitButton}

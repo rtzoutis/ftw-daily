@@ -42,7 +42,8 @@ const EditListingFeaturesPanel = props => {
   );
 
   const amenities = publicData && publicData.amenities;
-  const initialValues = { amenities };
+  const subcategory = publicData && publicData.subcategory;
+  const initialValues = { amenities, subcategory };
 
   return (
     <div className={classes}>

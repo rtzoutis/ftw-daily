@@ -6,6 +6,7 @@ import { intlShape, injectIntl, FormattedMessage } from '../../util/reactIntl';
 import classNames from 'classnames';
 import { propTypes } from '../../util/types';
 import { Form, Button, FieldTextInput } from '../../components';
+import * as validators from '../../util/validators';
 
 import css from './EditListingPoliciesForm.module.css';
 
@@ -34,6 +35,13 @@ export const EditListingPoliciesFormComponent = props => (
         id: 'EditListingPoliciesForm.rulesPlaceholder',
       });
 
+      const minimumAgeLabelMessage = intl.formatMessage({
+        id: 'EditListingPoliciesForm.minimumAgeLabel',
+      });
+      const minimumAgePlaceholderMessage = intl.formatMessage({
+        id: 'EditListingPoliciesForm.minimumAgePlaceholder',
+      });
+
       const { updateListingError, showListingsError } = fetchErrors || {};
       const errorMessage = updateListingError ? (
         <p className={css.error}>
@@ -45,6 +53,11 @@ export const EditListingPoliciesFormComponent = props => (
           <FormattedMessage id="EditListingPoliciesForm.showListingFailed" />
         </p>
       ) : null;
+
+      const requiredMessage = intl.formatMessage({
+        id: 'EditListingPoliciesForm.rulesRequired',
+      });
+      const required = validators.required('This field is required');
 
       const classes = classNames(css.root, className);
       const submitReady = (updated && pristine) || ready;
@@ -63,6 +76,21 @@ export const EditListingPoliciesFormComponent = props => (
             type="textarea"
             label={rulesLabelMessage}
             placeholder={rulesPlaceholderMessage}
+            validate={required}
+          />
+
+          <FieldTextInput
+            id="minimum_age"
+            name="minimum_age"
+            className={css.policy}
+            type="text"
+            label={minimumAgeLabelMessage}
+            placeholder={minimumAgePlaceholderMessage}
+            onKeyPress={(event) => {
+              if (!/[0-9]/.test(event.key)) {
+                event.preventDefault();
+              }
+            }}
           />
 
           <Button

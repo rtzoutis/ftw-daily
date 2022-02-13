@@ -119,6 +119,23 @@ export const filters = [
     },
   },
   {
+    id: 'delivery_method',
+    label: 'Delivery Method',
+    type: 'SelectMultipleFilter',
+    group: 'secondary',
+    queryParamNames: ['pub_delivery_method'],
+    config: {
+      // "key" is the option you see in Flex Console.
+      // "label" is set here for the UI only.
+      // Note: label is not added through the translation files
+      // to make filter customizations a bit easier.
+      options: [
+        { key: 'pickup', label: 'Pickup' },
+        { key: 'shipping', label: 'Shipping' },
+      ],
+    },
+  },
+  {
     id: 'types',
     label: 'Type',
     type: 'SelectMultipleFilter',
@@ -285,6 +302,52 @@ export const filters = [
           key: 'own_food_allowed',
           label: 'Own food allowed',
         },
+      ],
+    },
+  },
+  {
+    id: 'features',
+    label: 'Features',
+    type: 'SelectMultipleFilter',
+    group: 'secondary',
+    queryParamNames: ['pub_features'],
+    config: {
+      // Optional modes: 'has_all', 'has_any'
+      // https://www.sharetribe.com/api-reference/marketplace.html#extended-data-filtering
+      searchMode: 'has_all',
+
+      // "key" is the option you see in Flex Console.
+      // "label" is set here for this web app's UI only.
+      // Note: label is not added through the translation files
+      // to make filter customizations a bit easier.
+      options: [
+        //car
+        { key: 'airconditioning', label: 'Air-conditioning', subcategory: 'car' },
+        { key: 'seats2', label: '2-seats', subcategory: 'car' },
+        { key: 'seats5', label: '5-seats', subcategory: 'car' },
+        { key: 'seatsgt5', label: '>5-seats', subcategory: 'car' },
+        { key: 'doors2', label: '2 doors', subcategory: 'car' },
+        { key: 'doors4', label: '4 doors', subcategory: 'car' },
+        //motorcycle
+        { key: 'abs', label: 'ABS', subcategory: 'motorcycle' },
+        { key: 'asc', label: 'ASC traction control', subcategory: 'motorcycle' },
+        { key: 'luggage', label: 'Complete luggage system', subcategory: 'motorcycle' },
+        { key: 'gpsmount', label: 'GPS mount', subcategory: 'motorcycle' },
+        //standard bicycle
+        { key: 'handlebarmirrors', label: 'Handlebar Mirrors', subcategory: 'bicycle' },
+        { key: 'frontheadlight', label: 'Front Headlight', subcategory: 'bicycle' },
+        { key: 'rearflashers', label: 'Rear Flashers', subcategory: 'bicycle' },
+        { key: 'reflectors', label: 'Reflectors', subcategory: 'bicycle' },
+        { key: 'bells', label: 'Bells', subcategory: 'bicycle' },
+        //e-bikes
+        { key: 'seat1', label: '1-seat', subcategory: 'ebike' },
+        { key: 'seats2', label: '2-seats', subcategory: 'ebike' },
+        { key: 'starter', label: 'Starter', subcategory: 'ebike' },
+        { key: 'topbox', label: 'Top box', subcategory: 'ebike' },
+        { key: 'aircooled', label: 'Air-cooled', subcategory: 'ebike' },
+        { key: 'liquidcooled', label: 'Liquid-cooled', subcategory: 'ebike' },
+        { key: 'reargear', label: 'Rear gear', subcategory: 'ebike' },
+        { key: 'auto', label: 'Auto', subcategory: 'ebike' },
       ],
     },
   },

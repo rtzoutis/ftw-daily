@@ -10,6 +10,7 @@ import config from '../../config';
 import { Button, FieldCheckboxGroup, Form } from '../../components';
 
 import css from './EditListingFeaturesForm.module.css';
+import FieldCheckboxGroupSubcategory from '../../components/FieldCheckboxGroup/FieldCheckboxGroupSubcategory';
 
 const EditListingFeaturesFormComponent = props => (
   <FinalForm
@@ -49,13 +50,13 @@ const EditListingFeaturesFormComponent = props => (
         </p>
       ) : null;
 
-      const options = findOptionsForSelectFilter('amenities', filterConfig);
+      const options = findOptionsForSelectFilter('types', filterConfig);
       return (
         <Form className={classes} onSubmit={handleSubmit}>
           {errorMessage}
           {errorMessageShowListing}
 
-          <FieldCheckboxGroup className={css.features} id={name} name={name} options={options} />
+          <FieldCheckboxGroupSubcategory subcategory_name={"subcategory"} className={css.features} id={name} name={name} options={options} />
 
           <Button
             className={css.submitButton}

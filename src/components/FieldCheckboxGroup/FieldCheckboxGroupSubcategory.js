@@ -24,6 +24,7 @@ function FieldCheckboxRenderer(props) {
     const classes = classNames(rootClassName || css.root, className);
     const listClasses = twoColumns ? classNames(css.list, css.twoColumns) : css.list;
 
+    console.log(formState.values['subcategory']);
     return (
         <fieldset className={classes}>
             {label ? <legend>{label}</legend> : null}

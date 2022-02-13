@@ -15,11 +15,16 @@
   }
 }
 
-.features {
-  margin-bottom: 24px;
+.features ul li{
+  display: inline-block;
+  width: 100%;
 
   @media (--viewportMedium) {
-    margin-bottom: 32px;
+    width: 50%;
+  }
+
+  @media (--viewportLarge) {
+    width: 25%;
   }
 }
 

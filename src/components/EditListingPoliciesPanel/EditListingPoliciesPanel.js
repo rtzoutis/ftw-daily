@@ -44,12 +44,13 @@ const EditListingPoliciesPanel = props => {
       <EditListingPoliciesForm
         className={css.form}
         publicData={publicData}
-        initialValues={{ rules: publicData.rules }}
+        initialValues={{ rules: publicData.rules, minimum_age: publicData.minimum_age }}
         onSubmit={values => {
-          const { rules = '' } = values;
+          const { rules = '', minimum_age } = values;
           const updateValues = {
             publicData: {
               rules,
+              minimum_age,
             },
           };
           onSubmit(updateValues);

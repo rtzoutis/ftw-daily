@@ -327,3 +327,10 @@
 .daterangeContainer > div {
   flex: 1;
 }
+
+.discountContainer li {
+  display: flex;
+}
+.discountContainer > div {
+  flex: 1;
+}

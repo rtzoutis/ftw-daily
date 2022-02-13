@@ -9,11 +9,19 @@ import { ensureCurrentUser } from '../../util/data';
 import { propTypes } from '../../util/types';
 import * as validators from '../../util/validators';
 import { isUploadImageOverLimitError } from '../../util/errors';
-import { Form, Avatar, Button, ImageFromFile, IconSpinner, FieldTextInput, FieldDateRangeInput, FieldDateInput } from '../../components';
+import { Form, Avatar, Button, ImageFromFile, IconSpinner, FieldTextInput, FieldDateRangeInput, FieldDateInput, FieldCheckboxGroup } from '../../components';
+import arrayMutators from 'final-form-arrays';
 
 import moment from 'moment';
 
 import css from './ProfileSettingsForm.module.css';
+import FieldSeasonInput from '../../components/FieldSeasonInput/FieldSeasonInput';
+
+import { findOptionsForSelectFilter } from '../../util/search';
+import config from '../../config';
+import FieldCheckboxGroupSubcategory from '../../components/FieldCheckboxGroup/FieldCheckboxGroupSubcategory';
+import FieldDiscountGroup from '../../components/FieldDiscountGroup/FieldDiscountGroup';
+import FieldSeasonGroup from '../../components/FieldSeasonInput/FieldSeasonGroup';
 
 const ACCEPT_IMAGES = 'image/*';
 const UPLOAD_CHANGE_DELAY = 2000; // Show spinner so that browser has time to load img srcset
@@ -46,6 +54,7 @@ class ProfileSettingsFormComponent extends Component {
     return (
       <FinalForm
         {...this.props}
+        mutators={{ ...arrayMutators }}
         render={fieldRenderProps => {
           const {
             className,
@@ -184,6 +193,20 @@ class ProfileSettingsFormComponent extends Component {
           const pristineSinceLastSubmit = submittedOnce && isEqual(values, this.submittedValues);
           const submitDisabled =
             invalid || pristine || pristineSinceLastSubmit || uploadInProgress || submitInProgress;
+
+          const subcategories = findOptionsForSelectFilter('subcategory', config.custom.filters);
+          let roadTypes = [];
+          let seaTypes = [];
+          subcategories.forEach(cat => {
+            if(cat.category == "road"){
+              roadTypes.push(cat);
+            }
+            else if(cat.category == "sea"){
+              seaTypes.push(cat);
+            }
+          });
+
+          const deliveryMethods = findOptionsForSelectFilter('delivery_method', config.custom.filters);
 
           return (
             <Form
@@ -365,30 +388,54 @@ class ProfileSettingsFormComponent extends Component {
                 />
               </div>
               <div className={css.sectionContainer}>
-                <div className={css.daterangeContainer}>
-                  <div style={{paddingTop: "5px", flex: "0 0 125px"}}>
-                    Low Season
-                  </div>
-                  <FieldDateInput name="low_start" placeholderText="From" weekDayFormat={" "} className={css.datePicker} displayFormat={"D MMMM"} monthFormat={"MMMM"} isOutsideRange={(date) => {return false;}} enableOutsideDays={true} />
-                  <FieldDateInput name="low_end" placeholderText="To" weekDayFormat={" "} className={css.datePicker} displayFormat={"D MMMM"} monthFormat={"MMMM"} isOutsideRange={(date) => {return false;}} enableOutsideDays={true} />
+                <label htmlFor={"low_season_start_1"}>
+                  <FormattedMessage id="ProfileSettingsForm.seasonPeriods" />
+                </label>
+                <div className={css.discountContainer}>
+                  <FieldSeasonGroup title={"low_season"} header={"Low Seasons"} id={"low_season"} name={"low_season"} />
                 </div>
               </div>
               <div className={css.sectionContainer}>
-                <div className={css.daterangeContainer}>
-                  <div style={{paddingTop: "5px", flex: "0 0 125px"}}>
-                    Mid Season
-                  </div>
-                  <FieldDateInput name="mid_start" placeholderText="From" weekDayFormat={" "} className={css.datePicker} displayFormat={"D MMMM"} monthFormat={"MMMM"} isOutsideRange={(date) => {return false;}} enableOutsideDays={true} />
-                  <FieldDateInput name="mid_end" placeholderText="To" weekDayFormat={" "} className={css.datePicker} displayFormat={"D MMMM"} monthFormat={"MMMM"} isOutsideRange={(date) => {return false;}} enableOutsideDays={true} />
+                <div className={css.discountContainer}>
+                  <FieldSeasonGroup title={"mid_season"} header={"Mid Seasons"} id={"mid_season"} name={"mid_season"} />
                 </div>
               </div>
-              <div className={classNames(css.sectionContainer, css.lastSection)} style={{marginBottom: "200px"}}>
-                <div className={css.daterangeContainer}>
-                  <div style={{paddingTop: "5px", flex: "0 0 125px"}}>
-                    High Season
-                  </div>
-                  <FieldDateInput name="high_start" placeholderText="From" weekDayFormat={" "} className={css.datePicker} displayFormat={"D MMMM"} monthFormat={"MMMM"} isOutsideRange={(date) => {return false;}} enableOutsideDays={true} />
-                  <FieldDateInput name="high_end" placeholderText="To" weekDayFormat={" "} className={css.datePicker} displayFormat={"D MMMM"} monthFormat={"MMMM"} isOutsideRange={(date) => {return false;}} enableOutsideDays={true} />
+              <div className={css.sectionContainer}>
+                <div className={css.discountContainer}>
+                  <FieldSeasonGroup title={"high_season"} header={"High Seasons"} id={"high_season"} name={"high_season"} />
+                </div>
+              </div>
+              <div className={css.sectionContainer}>
+                <label>
+                  <FormattedMessage id="ProfileSettingsForm.vehicleType" />
+                </label>
+                <div style={{marginTop: "10px", marginBottom: "10px"}}>
+                  <label style={{textDecoration: "underline"}}>
+                    <FormattedMessage style={{textDecoration: "underline"}} id="ProfileSettingsForm.road" />
+                  </label>
+                  <FieldCheckboxGroup twoColumns={true} id={"road_types"} name={"road_types"} options={roadTypes} />
+                </div>
+                <div>
+                  <label style={{textDecoration: "underline"}}>
+                    <FormattedMessage style={{textDecoration: "underline"}} id="ProfileSettingsForm.sea" />
+                  </label>
+                  <FieldCheckboxGroup twoColumns={true} id={"sea_types"} name={"sea_types"} options={seaTypes} />
+                </div>
+              </div>
+              <div className={css.sectionContainer}>
+                <label>
+                  <FormattedMessage id="ProfileSettingsForm.packageDiscounts" />
+                </label>
+                <div className={css.discountContainer}>
+                  <FieldDiscountGroup id={"package_discount"} name={"package_discount"} />
+                </div>
+              </div>
+              <div className={css.sectionContainer}>
+                <label>
+                  <FormattedMessage id="ProfileSettingsForm.deliveryMethod" />
+                </label>
+                <div>
+                  <FieldCheckboxGroup twoColumns={true} id={"delivery_methods"} name={"delivery_methods"} options={deliveryMethods} />
                 </div>
               </div>
               {/*<div className={css.sectionContainer}>

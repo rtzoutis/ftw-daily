@@ -110,6 +110,36 @@ export const emailFormatValid = message => value => {
   return value && EMAIL_RE.test(value) ? VALID : message;
 };
 
+const SEASON_PERIOD_RE = /^([0]?[1-9]|[1-2][0-9]|[3][0|1])\/([0]?[1-9]|[1][0-2])$/i;
+
+export const seasonPeriodValid = message => value => {
+  if(!value){
+    return VALID;
+  }
+  let reg = (value && SEASON_PERIOD_RE.test(value));
+  let second = true;
+  if(reg){
+    let maxDays = [31,29,31,30,31,30,31,31,30,31,30,31];
+    let day = value.split("/")[0];
+    let month = parseInt(value.split("/")[1])-1;
+    if(day <= 0 || day > maxDays[month]){
+      second = false;
+    }
+  }
+  return (reg && second) ? VALID : message;
+};
+
+//const PACKAGE_DISCOUNT_RE = /^([0-9]*)|([0-9]*[\-][0-9]*)|([\>]?[0-9]*)$/i;
+const PACKAGE_DISCOUNT_RE = /^(([0-9]+)|([0-9]+[\-][0-9]+)|([\>]?[0-9]+))$/i;
+
+export const packageDiscountValid = message => value => {
+  if(!value){
+    return VALID;
+  }
+  let reg = (value && PACKAGE_DISCOUNT_RE.test(value));
+  return (reg) ? VALID : message;
+};
+
 export const moneySubUnitAmountAtLeast = (message, minValue) => value => {
   return value instanceof Money && value.amount >= minValue ? VALID : message;
 };
