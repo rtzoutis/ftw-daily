@@ -73,7 +73,7 @@
   composes: formMargins;
 }
 
-.listing_code {
+.quantity {
   composes: formMargins;
 }
 

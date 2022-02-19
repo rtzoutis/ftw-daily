@@ -45,9 +45,9 @@ const EditListingGeneralPanel = props => {
   const types = publicData && publicData.types;
   const subcategory = publicData && publicData.subcategory;
   const reference_link = publicData && publicData.reference_link;
-  const listing_code = publicData && publicData.listing_code;
+  const quantity = publicData && publicData.quantity;
   const color = publicData && publicData.color;
-  const initialValues = { types, subcategory, reference_link, listing_code, color };
+  const initialValues = { types, subcategory, reference_link, quantity, color };
 
   return (
     <div className={classes}>
@@ -57,10 +57,10 @@ const EditListingGeneralPanel = props => {
         name={'types'}
         initialValues={initialValues}
         onSubmit={values => {
-          const { types = [], reference_link, listing_code, color } = values;
+          const { types = [], reference_link, quantity, color } = values;
 
           const updatedValues = {
-            publicData: { types, reference_link, listing_code, color },
+            publicData: { types, reference_link, quantity, color },
           };
           onSubmit(updatedValues);
         }}

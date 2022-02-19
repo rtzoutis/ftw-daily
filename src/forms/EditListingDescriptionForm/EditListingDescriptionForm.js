@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { arrayOf, bool, func, shape, string } from 'prop-types';
 import { compose } from 'redux';
 import { Form as FinalForm } from 'react-final-form';
+import { OnChange } from 'react-final-form-listeners';
 import { intlShape, injectIntl, FormattedMessage } from '../../util/reactIntl';
 import classNames from 'classnames';
 import { propTypes } from '../../util/types';
@@ -21,6 +22,7 @@ const EditListingDescriptionFormComponent = props => (
       const {
         categories,
         subcategories,
+        types,
         className,
         disabled,
         ready,
@@ -32,6 +34,7 @@ const EditListingDescriptionFormComponent = props => (
         updated,
         updateInProgress,
         fetchErrors,
+        form,
       } = formRenderProps;
 
       const titleMessage = intl.formatMessage({ id: 'EditListingDescriptionForm.title' });
@@ -86,6 +89,17 @@ const EditListingDescriptionFormComponent = props => (
 
       return (
         <Form className={classes} onSubmit={handleSubmit}>
+          <OnChange name="category">
+            {(value, previous) => {
+              formRenderProps.form.change("subcategory", undefined);
+            }}
+          </OnChange>
+          <OnChange name="subcategory">
+            {(value, previous) => {
+              if(previous != value) //Have to clear types in another form, this is the only way I found
+                props.initialValues.types = undefined; //causes a weird glitch on subcategory on Basic Info when returning back to it and changing the value, but it's small
+            }}
+          </OnChange>
           {errorMessageCreateListingDraft}
           {errorMessageUpdateListing}
           {errorMessageShowListing}

@@ -232,6 +232,7 @@ export const filters = [
         { key: 'silver', label: 'Silver' },
         { key: 'red', label: 'Red' },
         { key: 'blue', label: 'Blue' },
+        { key: 'various', label: 'Various' },
       ],
     },
   },

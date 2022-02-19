@@ -99,13 +99,18 @@ const EditListingGeneralFormComponent = props => (
           />
 
           <FieldTextInput
-            id="listing_code"
-            name="listing_code"
-            className={css.listing_code}
-            type="text"
-            label={ intl.formatMessage({id: 'EditListingGeneralForm.listing_code'}) }
-            placeholder={ intl.formatMessage({id: 'EditListingGeneralForm.listing_codePlaceholder'}) }
-            validate={composeValidators(required( intl.formatMessage({id: 'EditListingGeneralForm.listing_codeRequired'}) ), maxLength60Message)}
+            id="quantity"
+            name="quantity"
+            className={css.quantity}
+            type="number"
+            label={ intl.formatMessage({id: 'EditListingGeneralForm.quantity'}) }
+            placeholder={ intl.formatMessage({id: 'EditListingGeneralForm.quantityPlaceholder'}) }
+            validate={composeValidators(required( intl.formatMessage({id: 'EditListingGeneralForm.quantityRequired'}) ), maxLength60Message)}
+            onKeyPress={(event) => {
+              if (!/[0-9]/.test(event.key)) {
+                event.preventDefault();
+              }
+            }}
           />
 
           <CustomColorSelectField

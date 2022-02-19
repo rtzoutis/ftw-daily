@@ -39,7 +39,7 @@ const EditListingPricingPanelComponent = props => {
 
   const classes = classNames(rootClassName || css.root, className);
   const currentListing = ensureOwnListing(listing);
-  const { price } = currentListing.attributes;
+  const { price, publicData } = currentListing.attributes;
 
   const isPublished = currentListing.id && currentListing.attributes.state !== LISTING_STATE_DRAFT;
   const panelTitle = isPublished ? (
@@ -82,34 +82,75 @@ const EditListingPricingPanelComponent = props => {
     }
   }
 
+  const low_period_price_1 = publicData && publicData.low_period_price_1 ? publicData.low_period_price_1 : null;
+  const low_period_price_2 = publicData && publicData.low_period_price_2 ? publicData.low_period_price_2 : null;
+  const low_period_price_3 = publicData && publicData.low_period_price_3 ? publicData.low_period_price_3 : null;
+
+  const mid_period_price_1 = publicData && publicData.mid_period_price_1 ? publicData.mid_period_price_1 : null;
+  const mid_period_price_2 = publicData && publicData.mid_period_price_2 ? publicData.mid_period_price_2 : null;
+  const mid_period_price_3 = publicData && publicData.mid_period_price_3 ? publicData.mid_period_price_3 : null;
+
+  const high_period_price_1 = publicData && publicData.high_period_price_1 ? publicData.high_period_price_1 : null;
+  const high_period_price_2 = publicData && publicData.high_period_price_2 ? publicData.high_period_price_2 : null;
+  const high_period_price_3 = publicData && publicData.high_period_price_3 ? publicData.high_period_price_3 : null;
+
+  const low_period_price_1_money = low_period_price_1 ? new Money(low_period_price_1.amount, low_period_price_1.currency) : null;
+  const low_period_price_2_money = low_period_price_2 ? new Money(low_period_price_2.amount, low_period_price_2.currency) : null;
+  const low_period_price_3_money = low_period_price_3 ? new Money(low_period_price_3.amount, low_period_price_3.currency) : null;
+
+  const mid_period_price_1_money = mid_period_price_1 ? new Money(mid_period_price_1.amount, mid_period_price_1.currency) : null;
+  const mid_period_price_2_money = mid_period_price_2 ? new Money(mid_period_price_2.amount, mid_period_price_2.currency) : null;
+  const mid_period_price_3_money = mid_period_price_3 ? new Money(mid_period_price_3.amount, mid_period_price_3.currency) : null;
+
+  const high_period_price_1_money = high_period_price_1 ? new Money(high_period_price_1.amount, high_period_price_1.currency) : null;
+  const high_period_price_2_money = high_period_price_2 ? new Money(high_period_price_2.amount, high_period_price_2.currency) : null;
+  const high_period_price_3_money = high_period_price_3 ? new Money(high_period_price_3.amount, high_period_price_3.currency) : null;
+
+  const initialValues = { 
+    price,
+    low_period_price_1: low_period_price_1_money,
+    low_period_price_2: low_period_price_2_money,
+    low_period_price_3: low_period_price_3_money,
+    mid_period_price_1: mid_period_price_1_money,
+    mid_period_price_2: mid_period_price_2_money,
+    mid_period_price_3: mid_period_price_3_money,
+    high_period_price_1: high_period_price_1_money,
+    high_period_price_2: high_period_price_2_money,
+    high_period_price_3: high_period_price_3_money,
+  };
+
+
   const priceCurrencyValid = price instanceof Money ? price.currency === config.currency : true;
   const form = priceCurrencyValid ? (
     <EditListingPricingForm
       className={css.form}
-      initialValues={{ price }}
+      initialValues={initialValues}
       onSubmit={values => {
+        console.log(values);
         const { 
-          low_period_price_1,
-          low_period_price_2,
-          low_period_price_3,
-          mid_period_price_1,
-          mid_period_price_2,
-          mid_period_price_3,
-          high_period_price_1,
-          high_period_price_2,
-          high_period_price_3,
+          price,
+          low_period_price_1 = null,
+          low_period_price_2 = null,
+          low_period_price_3 = null,
+          mid_period_price_1 = null,
+          mid_period_price_2 = null,
+          mid_period_price_3 = null,
+          high_period_price_1 = null,
+          high_period_price_2 = null,
+          high_period_price_3 = null,
         } = values;
         const updateValues = {
+          price,
           publicData: { 
-            low_period_price_1,
-            low_period_price_2,
-            low_period_price_3,
-            mid_period_price_1,
-            mid_period_price_2,
-            mid_period_price_3,
-            high_period_price_1,
-            high_period_price_2,
-            high_period_price_3, 
+            low_period_price_1: low_period_price_1 ? {amount: low_period_price_1.amount, currency: low_period_price_1.currency} : null,
+            low_period_price_2: low_period_price_2 ? {amount: low_period_price_2.amount, currency: low_period_price_2.currency} : null,
+            low_period_price_3: low_period_price_3 ? {amount: low_period_price_3.amount, currency: low_period_price_3.currency} : null,
+            mid_period_price_1: mid_period_price_1 ? {amount: mid_period_price_1.amount, currency: mid_period_price_1.currency} : null,
+            mid_period_price_2: mid_period_price_2 ? {amount: mid_period_price_2.amount, currency: mid_period_price_2.currency} : null,
+            mid_period_price_3: mid_period_price_3 ? {amount: mid_period_price_3.amount, currency: mid_period_price_3.currency} : null,
+            high_period_price_1: high_period_price_1 ? {amount: high_period_price_1.amount, currency: high_period_price_1.currency} : null,
+            high_period_price_2: high_period_price_2 ? {amount: high_period_price_2.amount, currency: high_period_price_2.currency} : null,
+            high_period_price_3: high_period_price_3 ? {amount: high_period_price_3.amount, currency: high_period_price_3.currency} : null,
           },
         };
 
