@@ -101,7 +101,7 @@ export const EditListingPricingFormComponent = props => (
             name="price"
             className={css.priceInput}
             autoFocus
-            label={"Basic " + pricePerUnitMessage}
+            label={pricePerUnitMessage}
             placeholder={pricePlaceholderMessage}
             currencyConfig={config.currencyConfig}
             validate={priceValidators}
